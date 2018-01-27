@@ -1,0 +1,14 @@
+#FooterDiv {
+  align-content:center;
+  width:100%;
+  text-align:center;
+}
+
+.jumbotron {
+  text-align:center;
+}
+
+.form-container {
+  max-width:inherit;
+}
+
