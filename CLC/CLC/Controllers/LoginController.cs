@@ -17,7 +17,7 @@ namespace CLC.Controllers
         [HttpPost]
         public ActionResult Login()
         {
-
+            return View("");
         }
     }
 }
