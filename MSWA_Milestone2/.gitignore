@@ -1,8 +1,0 @@
-MSWA_Milestone2/App_Data/
-MSWA_Milestone2/bin/
-MSWA_Milestone2/obj/
-MSWA_Milestone2/*.config
-MSWA_Milestone2/*.csproj
-packages/
-.vs
-MSWA_Milestone2.sln
