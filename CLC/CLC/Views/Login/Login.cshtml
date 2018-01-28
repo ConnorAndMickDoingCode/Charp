@@ -1,0 +1,35 @@
+﻿@model CLC.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Login</title>
+</head>
+<body>
+<div class="container">
+    <div class="login-clean" style="background-color: #cccccc;">
+        <form method="post" style="background-color: #be5049;">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration" style="background-color: #be5049; margin: 10px; padding: 5px;">
+                <i class="fa fa-bomb" style="color: #429db1; background-color: #be5049;"></i>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" style="background-color: #429db1;">Log In</button>
+            </div><a href="#" class="forgot">Forgot your email or password? Make a new account!</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

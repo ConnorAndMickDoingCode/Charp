@@ -13,5 +13,11 @@ namespace CLC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Login()
+        {
+
+        }
     }
 }
