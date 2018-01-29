@@ -21,19 +21,25 @@ namespace CLC.Services.Business
         public bool Authenticate(User user)
         {
             SecurityDAO service = new SecurityDAO();
-            return service.FindByUser(user);
+            return !InvalidParams(user) && service.FindByUser(user);
         }
 
         public bool Register(User user)
         {
             SecurityDAO service = new SecurityDAO();
-            return service.Create(user);
+            return !InvalidParams(user) && service.Create(user);
         }
 
-        public bool CheckForUsername(User user)
+        public bool UsernameExists(User user)
         {
             SecurityDAO service = new SecurityDAO();
-            return service.CheckUsername(user);
+            return InvalidParams(user) || service.UsernameFound(user);
+        }
+
+        private bool InvalidParams(User user)
+        {
+            return user.Username == null || user.Username.Trim().Equals("") || user.Password == null ||
+                   user.Password.Trim().Equals("") || user.Username.Length < 1 || user.Password.Length < 1;
         }
     }
 }

@@ -4,7 +4,7 @@
  CST-256 
  January 28, 2018 
  This assignment was completed in collaboration with Connor Low, Mick Torres. 
- We used source code from the following websites to complete this assignment: N/ A 
+ We used source code from the following websites to complete this assignment: N/A 
  */
 
 using System;

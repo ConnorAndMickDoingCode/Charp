@@ -6,6 +6,7 @@
  This assignment was completed in collaboration with Connor Low, Mick Torres. 
  We used source code from the following websites to complete this assignment: N/ A 
  */
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -74,7 +75,7 @@ namespace CLC.Services.Data
         /**
          * Checks for an existing username
          */
-        public bool CheckUsername(User user)
+        public bool UsernameFound(User user)
         {
             bool result = false;
 
@@ -95,10 +96,7 @@ namespace CLC.Services.Data
 
                     // Using a DataReader see if query returns any rows
                     SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                        result = true;
-                    else
-                        result = false;
+                    result = reader.HasRows;
 
                     // Close the connection
                     cn.Close();

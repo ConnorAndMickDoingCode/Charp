@@ -4,7 +4,7 @@
  CST-256 
  January 28, 2018 
  This assignment was completed in collaboration with Connor Low, Mick Torres. 
- We used source code from the following websites to complete this assignment: N/ A 
+ We used source code from the following websites to complete this assignment: N/A 
  */
 
 using System;
@@ -31,14 +31,14 @@ namespace CLC.Controllers
             // instantiate Business service
             SecurityService service = new SecurityService();
 
-            // get results
-            bool exists = service.CheckForUsername(user);
-
             // Check for existing username (no duplicates)
-            if (exists)
+            if (service.UsernameExists(user))
                 return View("Failure");
+
+            // register user
             service.Register(user);
-            return RedirectToAction("Login", "Login");
+            ViewBag.SuccessMessage = "<p>Success!</p>";
+            return RedirectToAction("Index", "Login");
         }
     }
 }
