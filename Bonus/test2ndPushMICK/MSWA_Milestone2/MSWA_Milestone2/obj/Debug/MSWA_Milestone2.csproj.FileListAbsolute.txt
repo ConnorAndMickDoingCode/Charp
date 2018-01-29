@@ -44,3 +44,4 @@ C:\cst-247\Code Workspace\MSWA_Milestone2\MSWA_Milestone2\bin\System.Web.Mvc.xml
 C:\cst-247\Code Workspace\MSWA_Milestone2\MSWA_Milestone2\obj\Debug\MSWA_Milestone2.csprojResolveAssemblyReference.cache
 C:\cst-247\Code Workspace\MSWA_Milestone2\MSWA_Milestone2\obj\Debug\MSWA_Milestone2.dll
 C:\cst-247\Code Workspace\MSWA_Milestone2\MSWA_Milestone2\obj\Debug\MSWA_Milestone2.pdb
+C:\Users\speed\Documents\_repositories\Charp\test2ndPushMICK\MSWA_Milestone2\MSWA_Milestone2\obj\Debug\MSWA_Milestone2.csproj.CoreCompileInputs.cache

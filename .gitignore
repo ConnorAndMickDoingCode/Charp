@@ -1,0 +1,8 @@
+CLC/CLC/App_Data/
+CLC/CLC/bin/
+CLC/CLC/obj/
+CLC/CLC/*.config
+CLC/CLC/*.csproj
+CLC/packages/
+CLC/.vs
+CLC.sln
