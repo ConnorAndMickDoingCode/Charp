@@ -1,12 +1,21 @@
-﻿using System;
+﻿/*
+ version 0.2
+ Connor, Mick
+ CST-256 
+ January 28, 2018 
+ This assignment was completed in collaboration with Connor Low, Mick Torres. 
+ We used source code from the following websites to complete this assignment: N/ A 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MSWA_Milestone2.Models;
-using MSWA_Milestone2.Services.Business;
+using CLC.Models;
+using CLC.Services.Business;
 
-namespace MSWA_Milestone2.Controllers
+namespace CLC.Controllers
 {
     public class LoginController : Controller
     {
@@ -14,18 +23,29 @@ namespace MSWA_Milestone2.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View("Index");
+            return View("Login");
         }
 
         [HttpPost]
         public ActionResult Login(User user)
         {
-            SecurityService SecServ = new SecurityService();
-            bool results = SecServ.Authenticate(user);
+            // instantiate Business service
+            SecurityService service = new SecurityService();
 
+            // get results
+            bool results = service.Authenticate(user);
+
+            // ? return home : return failure
             if (results)
                 return View("UserHomePage");
             return View("LoginFailed");
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            return View("Login");
         }
     }
 }

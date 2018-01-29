@@ -1,59 +1,62 @@
-﻿
+﻿@model CLC.Models.User
+
 @{
     Layout = null;
+    /* version 0.2
+    Connor, Mick
+    CST-256
+    January 24, 2018
+    This assignment was completed in collaboration with Connor Low, Mick Torres.
+    We used source code from the following websites to complete this assignment: N/ A
+    */
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Login</title>
 </head>
-<body style="background-color:#cccccc;">
-    <div>
-        <nav class="navbar navbar-default navigation-clean-button" style="background-color:#be5049;">
-            <div class="container">
-                <div class="navbar-header"><a class="navbar-brand" href="/Login" style="color:#ffffff;">Minesweeper </a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav">
-                        <li role="presentation"><a href="#" style="color:#ffffff;">Contact Us</a></li>
-                    </ul>
-                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" href="../Login//Login" style="color:#ffffff;">Log In</a> <a class="btn btn-default action-button" role="button" href="Registration" style="background-color:#429db1;">Sign Up</a></p>
+<body>
+<div class="container">
+    <div class="pageTitle">
+        <h1>Create New Account</h1>
+    </div>
+    <div id="registerForm" class="basicForm">
+        @using (Html.BeginForm("Register", "Registration", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <h4>UserModel</h4>
+                <hr/>
+                @Html.ValidationSummary(true, "u lie, u die (you can always retry)", new {@class = "text-danger"})
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Username, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Username, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@type = "password", @class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default"/>
+                    </div>
                 </div>
             </div>
-        </nav>
+        }
     </div>
-    <div class="register-photo" style="background-color:#cccccc;">
-        <div class="form-container" style="/*max-width:initial;*/">
-            <form method="post" style="background-color:#be5049;width:607px;">
-                <h2 class="text-center" style="color:#cccccc;"><strong>Create</strong> an account.</h2>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Username"></div>
-                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" style="background-color:#429db1;">Sign Up</button></div><a href="../Login//Login" class="already" style="color:#cccccc;">You already have an account? Login here.</a>
-            </form>
-        </div>
+    <div class="links">
+        <p>Already have an account? <a href="/Login">Sign-in</a>.</p>
     </div>
-    <div id="FooterDiv" style="font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#cccccc;">
-        <ul class="list-inline">
-            <li><a href="/Login">Home</a></li>
-            <li><a href="#">Team Members</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-        <p class="copyright">Minesweeper © 2018</p>
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>
