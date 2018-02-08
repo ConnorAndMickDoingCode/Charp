@@ -38,7 +38,7 @@ namespace CLC.Controllers
             // register user
             service.Register(user);
             ViewBag.SuccessMessage = "<p>Success!</p>";
-            return RedirectToAction("Index", "Login");
+            return View("../Login/UserHomePage");
         }
     }
 }

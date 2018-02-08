@@ -2,10 +2,10 @@
 
 @{
     Layout = null;
-    /* version 0.2
+    /* version 0.3
     Connor, Mick
     CST-256
-    January 24, 2018
+    February 7, 2018
     This assignment was completed in collaboration with Connor Low, Mick Torres.
     We used source code from the following websites to complete this assignment: N/ A
     */
@@ -33,15 +33,15 @@
                     <hr />
                     @Html.ValidationSummary(true, "u lie, u die (you can always retry)", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" }})
                             @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
