@@ -1,0 +1,12 @@
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.csprojResolveAssemblyReference.cache
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.GameGrid.resources
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.MainMenu.resources
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.csproj.GenerateResource.Cache
+C:\cst-227\MS_Milestone6\MS_Milestone6\bin\Debug\MS_Milestone6.exe.config
+C:\cst-227\MS_Milestone6\MS_Milestone6\bin\Debug\MS_Milestone6.exe
+C:\cst-227\MS_Milestone6\MS_Milestone6\bin\Debug\MS_Milestone6.pdb
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.Properties.Resources.resources
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.exe
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.pdb
+C:\cst-227\MS_Milestone6\MS_Milestone6\bin\Debug\MySql.Data.dll
+C:\cst-227\MS_Milestone6\MS_Milestone6\obj\Debug\MS_Milestone6.HighScoreForm.resources
