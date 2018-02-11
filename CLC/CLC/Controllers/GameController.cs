@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CLC.Models;
 using CLC.Services.Business;
@@ -22,16 +19,22 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Select(Game game)
+        public ActionResult Select(String size)
         {
-            GameLogic = game;
+            if (size.Equals("Large"))
+                GameLogic = new Game(16, 16, 40);
+            else if (size.Equals("Medium"))
+                GameLogic = new Game(12, 12, 22);
+            else // if (size.Equals("Small"))
+                GameLogic = new Game(9, 9, 12);
+
             return View("Game", GameLogic);
         }
 
         [HttpPost]
         public ActionResult Play(Cell cell)
         {
-
+            GameLogic.Check(cell.X, cell.Y);
             return View("Game", GameLogic);
         }
     }

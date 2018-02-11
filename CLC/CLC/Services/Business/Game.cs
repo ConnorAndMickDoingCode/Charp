@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CLC.Models;
+﻿using CLC.Models;
 
 namespace CLC.Services.Business
 {
@@ -16,10 +12,11 @@ namespace CLC.Services.Business
         public bool Lose { get; set; } = false;
         public bool Win { get; set; } = false;
 
-        Game(int w, int h)
+        public Game(int w, int h, int m)
         {
             Width = w;
             Height = h;
+            Mines = m;
             Init();
         }
 

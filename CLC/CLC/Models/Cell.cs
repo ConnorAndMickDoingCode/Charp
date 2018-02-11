@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace CLC.Models
 {
     public class Cell
@@ -13,10 +7,13 @@ namespace CLC.Models
         public bool Flagged { get; set; } = false;
         public bool Checked { set; get; } = false;
         public int Adjacent { get; set; } = 0;
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public Cell(bool isLive)
+        public Cell(int x, int y)
         {
-            Mine = isLive;
+            X = x;
+            Y = y;
         }
     }
 }
