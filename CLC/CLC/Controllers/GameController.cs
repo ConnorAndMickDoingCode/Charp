@@ -18,20 +18,21 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View("Select");
         }
 
         [HttpPost]
         public ActionResult Select(Game game)
         {
             GameLogic = game;
-            return View();
+            return View("Game", GameLogic);
         }
 
         [HttpPost]
         public ActionResult Play(Cell cell)
         {
-            return View();
+
+            return View("Game", GameLogic);
         }
     }
 }

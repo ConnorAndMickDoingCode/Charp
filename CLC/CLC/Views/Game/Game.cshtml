@@ -1,0 +1,44 @@
+﻿@model CLC.Services.Business.Game
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Game</title>
+</head>
+<body>
+<div>
+    <table>
+        @for (int y = 0; y < Model.Height; y++)
+        {
+            <tr>
+                @for (int x = 0; x < Model.Width; x++)
+                {
+                    <td>
+                        @using (Html.BeginForm("Play", "Game"))
+                        {
+                            <button type="submit" name="cell"
+                                @if (Model.Cells[x, y].Checked)
+                                {
+                                    @: class=""
+                                }
+                                @
+                                else
+                                {
+                                }>
+
+                            </button>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>
