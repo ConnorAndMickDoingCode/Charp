@@ -20,3 +20,4 @@ C:\cst-247\Code Workspace\2017VS\CLC2\CLC2\obj\Debug\CLC2.csprojResolveAssemblyR
 C:\cst-247\Code Workspace\2017VS\CLC2\CLC2\obj\Debug\CLC2.csproj.CoreCompileInputs.cache
 C:\cst-247\Code Workspace\2017VS\CLC2\CLC2\obj\Debug\CLC2.dll
 C:\cst-247\Code Workspace\2017VS\CLC2\CLC2\obj\Debug\CLC2.pdb
+C:\Users\speed\Documents\_repositories\Charp\Mick_CLC3\MERGE_PUSH_GAME\CLC2\CLC2\obj\Debug\CLC2.csproj.CoreCompileInputs.cache

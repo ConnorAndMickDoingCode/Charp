@@ -1,0 +1,21 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts")
+</head>
+<body>
+    @RenderPage("_Navbar.cshtml")
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <hr />
+    @RenderPage("_Footer.cshtml")
+</body>
+</html>
+
+

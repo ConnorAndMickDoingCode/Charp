@@ -1,4 +1,6 @@
-﻿using CLC.Models;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using CLC.Models;
 
 namespace CLC.Services.Business
 {
@@ -17,11 +19,35 @@ namespace CLC.Services.Business
             Width = w;
             Height = h;
             Mines = m;
+            Cells = new Cell[w, h];
             Init();
         }
 
         private void Init()
         {
+            // initialize cells
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    Cells[x, y] = new Cell(x, y);
+                }
+            }
+
+            // set mines
+            var ran = new Random();
+            for (int m = 0; m < Mines; m++)
+            {
+                var x = ran.Next(Width);
+                var y = ran.Next(Height);
+                Cells[x, y].Mine = true;
+                for (int rx = x - 1; rx < x + 2; rx++)
+                {
+                    for (int ry = y - 1; ry < y + 2; ry++)
+                        if (inBounds(rx, ry))
+                            Cells[rx, ry].Adjacent++;
+                }
+            }
         }
 
         public void Check(int x, int y)
@@ -38,7 +64,7 @@ namespace CLC.Services.Business
                 {
                     for (int relY = y - 1; relY <= y + 1; relY++)
                     {
-                        if (inBounds(relX, relY) && !Cells[x, y].Checked)
+                        if (inBounds(relX, relY) && !Cells[relX, relY].Checked)
                             Check(relX, relY);
                     }
                 }

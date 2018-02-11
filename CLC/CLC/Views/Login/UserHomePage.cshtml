@@ -1,31 +1,24 @@
-﻿@{
-    Layout = null;
-    /* version 0.2
-    Connor, Mick
-    CST-256 
-    January 28, 2018 
-    This assignment was completed in collaboration with Connor Low, Mick Torres. 
-    We used source code from the following websites to complete this assignment: N/ A 
-    */
+﻿
+@{
+    ViewBag.Title = "UserHomePage";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 
 <!DOCTYPE html>
+
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Homepage</title>
-</head>
+
 <body>
-<div class="container">
-    <div class="pageTitle">
-        <h1>Home</h1>
+
+    <div>
+        <div class="jumbotron" style="background-color:#ffffff;">
+            <h1 style="text-align:center;">user home</h1>
+            <br />
+            <a href="Logout">Sign Out</a>
+        </div>
     </div>
-    <div id="welcomeHome">
-        <p>Sign-in successful.</p>
-        <p></p>
-    </div>
-    <a href="Logout">Sign out</a>
-</div>
+    <div id="GAMEBOARD"></div>
+
 </body>
 </html>
+
