@@ -23,14 +23,20 @@
                         @using (Html.BeginForm("Play", "Game"))
                         {
                             <button type="submit" name="cell"
-                                @if (Model.Cells[x, y].Checked)
-                                {
-                                    @: class=""
-                                }
-                                @
-                                else
-                                {
-                                }>
+                                    @{
+                                        //todo add win or lose display logic
+
+                                        if (Model.Cells[x, y].Checked)
+                                        {
+
+                                            // class to determine how to display
+                                            @:class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                        }
+                                        else
+                                        {
+                                            @:class="cell"
+                                        }
+                                    }>
 
                             </button>
                         }
