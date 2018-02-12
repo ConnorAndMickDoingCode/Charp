@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 using CLC.Models;
 
 namespace CLC.Services.Business
@@ -36,17 +35,21 @@ namespace CLC.Services.Business
             {
                 var x = ran.Next(w);
                 var y = ran.Next(h);
-                result[x, y].Mine = true;
-                for (int rx = x - 1; rx < x + 2; rx++)
+                if (result[x, y].Mine)
+                    m--;
+                else
                 {
-                    for (int ry = y - 1; ry < y + 2; ry++)
+                    result[x, y].Mine = true;
+                    for (int rx = x - 1; rx < x + 2; rx++)
                     {
-                        if (inBounds(rx, ry))
-                            result[rx, ry].Adjacent++;
+                        for (int ry = y - 1; ry < y + 2; ry++)
+                        {
+                            if (inBounds(rx, ry))
+                                result[rx, ry].Adjacent++;
+                        }
                     }
                 }
             }
-
             return result;
         }
 
