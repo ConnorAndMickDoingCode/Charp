@@ -1,4 +1,4 @@
-﻿@model CLC.Services.Business.Game
+﻿@model CLC.Models.CellGrid
 @{
     ViewBag.Title = "Game";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
@@ -6,11 +6,11 @@
 <style>
     table {
         border-collapse: collapse;
-        border-spacing: 0;
     }
 
     td, tr {
         padding: 0;
+        border: solid;
         margin: 0;
     }
 
@@ -18,13 +18,23 @@
 
     .grid-cell { margin: 0; }
 
+    .cell form {
+        width: 50px !important;
+        height: 50px !important;
+        padding: 0;
+        margin: 0;
+    }
     .cell {
-        background: #ddd;
+        background: #ccc;
         width: 50px;
         height: 50px;
-        border: 2px solid #333;
-        border-radius: 3px;
+        /*border: 2px solid #333;
+        border-radius: 3px;*/
+        border: 0;
         margin: 0;
+        font-size: large;
+        font-weight: 700;
+        padding: 0;
     }
 
     .mine {
@@ -41,19 +51,19 @@
 
     .cell-win { border: 3px solid #5a5; }
 
-    .cell-checked { border: 0; }
+    .cell-checked { border: 0; background: #fff}
 
-    .cell-adjacent-1 { background: #88e; }
+    .cell-adjacent-1 { color: #88e; }
 
-    .cell-adjacent-2 { background: #8cc; }
+    .cell-adjacent-2 { color: #8cc; }
 
-    .cell-adjacent-3 { background: #8e8; }
+    .cell-adjacent-3 { color: #8e8; }
 
-    .cell-adjacent-4 { background: #cc8; }
+    .cell-adjacent-4 { color: #cc8; }
 
-    .cell-adjacent-5, cell-adjacent-6 { background: #e87 }
+    .cell-adjacent-5, cell-adjacent-6 { color: #e87 }
 
-    .cell-adjacent-7, cell-adjacent-8 { background: #f64 }
+    .cell-adjacent-7, cell-adjacent-8 { color: #f64 }
 </style>
 <div>
     <div class="minesweeper">
@@ -78,8 +88,7 @@
                             {
                                 <button type="submit" name="cell" value="@x,@y"
                                         @{
-                                            // class to determine how to display 
-
+                                            // class to determine how to display   
                                             if (Model.Lose)
                                             {
                                                 if (Model.Cells[x, y].Mine)
@@ -110,12 +119,13 @@
                                                 @: class="cell"
                                             }
                                         }>
-                                    @if (Model.Cells[x, y].Checked && @Model.Cells[x, y].Adjacent > 0)
+                                    @if (Model.Cells[x, y].Checked && Model.Cells[x, y].Adjacent > 0 && !Model.Cells[x, y].Mine)
                                     {
                                         @Model.Cells[x, y].Adjacent
                                     }
-                                    else
+                                    else if ((Model.Lose || Model.Win) && !Model.Cells[x, y].Mine)
                                     {
+                                        @Model.Cells[x, y].Adjacent
                                     }
                                 </button>
                             }

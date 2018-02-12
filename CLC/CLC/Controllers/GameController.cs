@@ -29,7 +29,7 @@ namespace CLC.Controllers
             else // if (size.Equals("small"))
                 GameLogic = new Game(9, 9, 12);
 
-            return View("Game", GameLogic);
+            return View("Game", GameLogic.Grid);
         }
 
         [HttpPost]
@@ -39,7 +39,7 @@ namespace CLC.Controllers
             var x = int.Parse(c[0]);
             var y = int.Parse(c[1]);
             GameLogic.Check(x, y);
-            return View("Game", GameLogic);
+            return View("Game", GameLogic.Grid);
         }
     }
 }
