@@ -4,9 +4,14 @@
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 <style>
-    table {
-        border-collapse: collapse;
+    .minesweeper {
+        margin: auto;
     }
+    
+     table {
+         border-collapse: collapse;
+         margin: auto;
+     }
 
     td, tr {
         padding: 0;
@@ -66,6 +71,9 @@
     .cell-adjacent-7, cell-adjacent-8 { color: #f64 }
 </style>
 <div>
+    <div class="row" style="margin: 0 auto 50px; width: 100px; text-align: center">
+        <a href="~/Game">New Game</a>
+    </div>
     <div class="minesweeper">
         <div class="status">
             @if (Model.Lose)
@@ -89,6 +97,8 @@
                                 <button type="submit" name="cell" value="@x,@y"
                                         @{
                                             // class to determine how to display   
+
+                                            // Display, if gameover
                                             if (Model.Lose)
                                             {
                                                 if (Model.Cells[x, y].Mine)
@@ -99,6 +109,8 @@
                                                 @: class="cell cell-lose cell-adjacent-@Model.Cells[x, y].Adjacent"
                                                 @: disabled
                                             }
+
+                                            // display, if win
                                             else if (Model.Win)
                                             {
                                                 if (Model.Cells[x, y].Mine)
@@ -109,6 +121,8 @@
                                                 @: class="cell cell-win cell-adjacent-@Model.Cells[x, y].Adjacent"
                                                 @: disabled
                                             }
+                                            
+                                            // display if game continuing
                                             else if (Model.Cells[x, y].Checked)
                                             {
                                                 @: class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"

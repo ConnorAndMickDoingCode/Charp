@@ -34,7 +34,7 @@ namespace CLC.Controllers
         public ActionResult Logout()
         {
             Session.RemoveAll();
-            return View("Login");
+            return View("../Default/Index");
         }
     }
 }
