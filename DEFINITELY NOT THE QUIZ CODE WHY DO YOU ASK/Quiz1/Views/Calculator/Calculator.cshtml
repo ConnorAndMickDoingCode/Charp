@@ -1,0 +1,55 @@
+﻿@model Quiz1.Models.CalculatorModel
+
+@{
+    ViewBag.Title = "Calculator";
+    var ajazOptions = new AjaxOptions
+    {
+        // http form method
+        HttpMethod = "POST",
+
+        // How the information is inserted
+        InsertionMode = InsertionMode.Replace,
+
+        // html element targeted
+        UpdateTargetId = "calculator-form",
+
+        // function to run on success
+        OnSuccess = "ajaxSuccess"
+    };
+}
+
+<h2>Calculator</h2>
+@using (Ajax.BeginForm("Calculate", "Calculator", ajazOptions, new {id = "ajax-form"}))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div id="calculator-form">
+            @Html.Partial("_CalculatorOutput", Model)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Left, new {@class = "control-label col-md-2"})
+            @Html.EditorFor(model => model.Left, new {@class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Right, new {@class = "control-label col-md-2"})
+            @Html.EditorFor(model => model.Right, new {@class = "form-control"})
+        </div>
+        <div class="form-group">
+            <div>
+                @Html.RadioButtonFor(model => model.Action, "add") Add
+            </div>
+            <div>
+                @Html.RadioButtonFor(model => model.Action, "subtract") Subtract
+            </div>
+            <div>
+                @Html.RadioButtonFor(model => model.Action, "divide") Divide
+            </div>
+            <div>
+                @Html.RadioButtonFor(model => model.Action, "multiply") Multiply
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" value="  =  " type="submit"/>
+        </div>
+    </div>
+}
