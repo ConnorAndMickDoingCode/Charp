@@ -86,7 +86,7 @@
 
     </div>
     <h4>@DateTime.Now</h4>
-    @using (Ajax.BeginForm("Play", "Game", ajax, new { id = "boardForm", @class = "col-md-10" }))
+    @using (Ajax.BeginForm("Play", "Game", ajax, new {id = "boardForm", @class = "col-md-10"}))
     {
         @Html.AntiForgeryToken()
         <div id="ajax-target">

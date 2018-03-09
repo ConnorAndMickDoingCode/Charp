@@ -33,8 +33,10 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Play(String cell)
+        public PartialViewResult Play(String cell)
         {
+            // start timer 
+
             var c = cell.Split(',');
             var x = int.Parse(c[0]);
             var y = int.Parse(c[1]);

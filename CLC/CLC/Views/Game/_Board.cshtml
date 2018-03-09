@@ -16,53 +16,51 @@
             @for (int x = 0; x < Model.Width; x++)
             {
                 <td class="grid-cell">
-                    @using (Html.BeginForm("Play", "Game"))
-                    {
-                        <button type="submit" name="cell" value="@x,@y"
-                                @{
-                                    /*// class to determine how to display   */
-                                    /*// Display, if gameover*/
-                                    if (Model.Lose)
+
+                    <button type="submit" name="cell" value="@x,@y"
+                            @{
+                                /*// class to determine how to display   */
+                                /*// Display, if gameover*/
+                                if (Model.Lose)
+                                {
+                                    if (Model.Cells[x, y].Mine)
                                     {
-                                        if (Model.Cells[x, y].Mine)
-                                        {
-                                            @: class= "cell mine"
-                                            @: disabled
-                                        }
-                                        @: class="cell cell-lose cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                        @: disabled
-                                    } 
-                                    /*// display, if win*/
-                                    else if (Model.Win)
-                                    {
-                                        if (Model.Cells[x, y].Mine)
-                                        {
-                                            @: class="cell mine"
-                                            @: disabled
-                                        }
-                                        @: class="cell cell-win cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                        @: disabled
-                                    } /* display if game continuing*/
-                                    else if (Model.Cells[x, y].Checked)
-                                    {
-                                        @: class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                        @: class= "cell mine"
                                         @: disabled
                                     }
-                                    else
+                                    @: class="cell cell-lose cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                    @: disabled
+                                } 
+                                /*// display, if win*/
+                                else if (Model.Win)
+                                {
+                                    if (Model.Cells[x, y].Mine)
                                     {
-                                        @: class="cell"
+                                        @: class="cell mine"
+                                        @: disabled
                                     }
-                                }>
-                            @if (Model.Cells[x, y].Checked && Model.Cells[x, y].Adjacent > 0 && !Model.Cells[x, y].Mine)
-                            {
-                                @Model.Cells[x, y].Adjacent
-                            }
-                            else if ((Model.Lose || Model.Win) && !Model.Cells[x, y].Mine)
-                            {
-                                @Model.Cells[x, y].Adjacent
-                            }
-                        </button>
-                    }
+                                    @: class="cell cell-win cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                    @: disabled
+                                } /* display if game continuing*/
+                                else if (Model.Cells[x, y].Checked)
+                                {
+                                    @: class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                    @: disabled
+                                }
+                                else
+                                {
+                                    @: class="cell"
+                                }
+                            }>
+                        @if (Model.Cells[x, y].Checked && Model.Cells[x, y].Adjacent > 0 && !Model.Cells[x, y].Mine)
+                        {
+                            @Model.Cells[x, y].Adjacent
+                        }
+                        else if ((Model.Lose || Model.Win) && !Model.Cells[x, y].Mine)
+                        {
+                            @Model.Cells[x, y].Adjacent
+                        }
+                    </button>
                 </td>
             }
         </tr>
