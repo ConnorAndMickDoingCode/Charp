@@ -7,12 +7,8 @@
  We used source code from the following websites to complete this assignment: N/ A 
  */
 
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using CLC.Models;
 
 namespace CLC.Services.Data
@@ -53,13 +49,12 @@ namespace CLC.Services.Data
 
                     // Using a DataReader see if query returns any rows
                     SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                        result = true;
-                    else
-                        result = false;
+                    result = reader.HasRows;
 
                     // Close the connection
                     cn.Close();
+
+                    return result;
                 }
             }
             catch (SqlException e)

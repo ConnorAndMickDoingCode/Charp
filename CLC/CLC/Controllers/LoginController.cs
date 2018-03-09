@@ -20,6 +20,9 @@ namespace CLC.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
+            if (!ModelState.IsValid)
+                return View("../Default/Index");
+
             SecurityService service = new SecurityService();
 
             bool results = service.Authenticate(user);

@@ -17,13 +17,13 @@ namespace CLC.Models
         [DefaultValue("")]
         public string Password { get; set; }
 
-        [Required]
+        //[Required]
         [DisplayName("First Name")]
         [StringLength(20, ErrorMessage = "First name must be under 20 characters")]
         [DefaultValue("")]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [DisplayName("Last Name")]
         [StringLength(20, ErrorMessage = "Last name must be under 20 characters")]
         [DefaultValue("")]

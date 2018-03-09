@@ -2,16 +2,22 @@
 @{
     ViewBag.Title = "Game";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    var ajax = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ajax-target",
+        OnSuccess = "ajaxSuccess"
+    };
+    // var script = @"$('#boardForm').trigger('submit');";
 }
 <style>
-    .minesweeper {
+    .minesweeper { margin: auto; }
+
+    table {
+        border-collapse: collapse;
         margin: auto;
     }
-    
-     table {
-         border-collapse: collapse;
-         margin: auto;
-     }
 
     td, tr {
         padding: 0;
@@ -29,6 +35,7 @@
         padding: 0;
         margin: 0;
     }
+
     .cell {
         background: #ccc;
         width: 50px;
@@ -56,7 +63,10 @@
 
     .cell-win { border: 3px solid #5a5; }
 
-    .cell-checked { border: 0; background: #fff}
+    .cell-checked {
+        border: 0;
+        background: #fff
+    }
 
     .cell-adjacent-1 { color: #88e; }
 
@@ -73,80 +83,15 @@
 <div>
     <div class="row" style="margin: 0 auto 50px; width: 100px; text-align: center">
         <a href="~/Game">New Game</a>
+
     </div>
-    <div class="minesweeper">
-        <div class="status">
-            @if (Model.Lose)
-            {
-                <h3 class="alert-danger">GAME OVER</h3>
-            }
-            else if (Model.Win)
-            {
-                <h3 class="alert-success">YOU WON</h3>
-            }
+    <h4>@DateTime.Now</h4>
+    @using (Ajax.BeginForm("Play", "Game", ajax, new { id = "boardForm", @class = "col-md-10" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="ajax-target">
+            @Html.Partial("_Board", Model)
         </div>
-        <table>
-            @for (int y = 0; y < Model.Height; y++)
-            {
-                <tr class="grid-row">
-                    @for (int x = 0; x < Model.Width; x++)
-                    {
-                        <td class="grid-cell">
-                            @using (Html.BeginForm("Play", "Game"))
-                            {
-                                <button type="submit" name="cell" value="@x,@y"
-                                        @{
-                                            // class to determine how to display   
+    }
 
-                                            // Display, if gameover
-                                            if (Model.Lose)
-                                            {
-                                                if (Model.Cells[x, y].Mine)
-                                                {
-                                                    @: class="cell mine"
-                                                    @: disabled
-                                                }
-                                                @: class="cell cell-lose cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                                @: disabled
-                                            }
-
-                                            // display, if win
-                                            else if (Model.Win)
-                                            {
-                                                if (Model.Cells[x, y].Mine)
-                                                {
-                                                    @: class="cell mine"
-                                                    @: disabled
-                                                }
-                                                @: class="cell cell-win cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                                @: disabled
-                                            }
-                                            
-                                            // display if game continuing
-                                            else if (Model.Cells[x, y].Checked)
-                                            {
-                                                @: class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                                @: disabled
-                                            }
-                                            else
-                                            {
-                                                @: class="cell"
-                                            }
-                                        }>
-                                    @if (Model.Cells[x, y].Checked && Model.Cells[x, y].Adjacent > 0 && !Model.Cells[x, y].Mine)
-                                    {
-                                        @Model.Cells[x, y].Adjacent
-                                    }
-                                    else if ((Model.Lose || Model.Win) && !Model.Cells[x, y].Mine)
-                                    {
-                                        @Model.Cells[x, y].Adjacent
-                                    }
-                                </button>
-                            }
-                        </td>
-                    }
-                </tr>
-            }
-        </table>
-    </div>
 </div>

@@ -39,7 +39,7 @@ namespace CLC.Controllers
             var x = int.Parse(c[0]);
             var y = int.Parse(c[1]);
             GameLogic.Check(x, y);
-            return View("Game", GameLogic.Grid);
+            return PartialView("_Board", GameLogic.Grid);
         }
     }
 }
