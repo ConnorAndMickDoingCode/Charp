@@ -9,60 +9,60 @@
         <h3 class="alert-success">YOU WON</h3>
     }
 </div>
-<table>
+<div class="minesweeper">
     @for (int y = 0; y < Model.Height; y++)
     {
-        <tr class="grid-row">
+        <div class="grid-row">
             @for (int x = 0; x < Model.Width; x++)
             {
-                <td class="grid-cell">
-
-                    <button type="submit" name="cell" value="@x,@y"
-                            @{
-                                /*// class to determine how to display   */
-                                /*// Display, if gameover*/
-                                if (Model.Lose)
+                <button type="submit" name="cell" value="@x,@y"
+                        @{
+                            /*// class to determine how to display   */
+                            /*// Display, if gameover*/
+                            if (Model.Lose)
+                            {
+                                if (Model.Cells[x, y].Mine)
                                 {
-                                    if (Model.Cells[x, y].Mine)
-                                    {
-                                        @: class= "cell mine"
-                                        @: disabled
-                                    }
-                                    @: class="cell cell-lose cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                    @: disabled
-                                } 
-                                /*// display, if win*/
-                                else if (Model.Win)
-                                {
-                                    if (Model.Cells[x, y].Mine)
-                                    {
-                                        @: class="cell mine"
-                                        @: disabled
-                                    }
-                                    @: class="cell cell-win cell-adjacent-@Model.Cells[x, y].Adjacent"
-                                    @: disabled
-                                } /* display if game continuing*/
-                                else if (Model.Cells[x, y].Checked)
-                                {
-                                    @: class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                    @: class= "cell mine"
                                     @: disabled
                                 }
-                                else
+                                @: class="cell cell-lose cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                @: disabled
+                            } 
+                            /*// display, if win*/
+                            else if (Model.Win)
+                            {
+                                if (Model.Cells[x, y].Mine)
                                 {
-                                    @: class="cell"
+                                    @: class="cell mine"
+                                    @: disabled
                                 }
-                            }>
-                        @if (Model.Cells[x, y].Checked && Model.Cells[x, y].Adjacent > 0 && !Model.Cells[x, y].Mine)
+                                @: class="cell cell-win cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                @: disabled
+                            } /* display if game continuing*/
+                            else if (Model.Cells[x, y].Checked)
+                            {
+                                @: class="cell cell-checked cell-adjacent-@Model.Cells[x, y].Adjacent"
+                                @: disabled
+                            }
+                            else
+                            {
+                                @: class="cell"
+                            }
+                        }>
+                    <div class="symbol">
+                        @if ((Model.Cells[x, y].Checked && Model.Cells[x, y].Adjacent > 0 && !Model.Cells[x, y].Mine)
+                             || ((Model.Lose || Model.Win) && !Model.Cells[x, y].Mine))
                         {
-                            @Model.Cells[x, y].Adjacent
+                            <p>@Model.Cells[x, y].Adjacent</p>
                         }
-                        else if ((Model.Lose || Model.Win) && !Model.Cells[x, y].Mine)
+                        else
                         {
-                            @Model.Cells[x, y].Adjacent
+                            <p>?</p>
                         }
-                    </button>
-                </td>
+                    </div>
+                </button>
             }
-        </tr>
+        </div>
     }
-</table>
+</div>

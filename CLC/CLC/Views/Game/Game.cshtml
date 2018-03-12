@@ -12,46 +12,60 @@
     // var script = @"$('#boardForm').trigger('submit');";
 }
 <style>
-    .minesweeper { margin: auto; }
-
-    table {
-        border-collapse: collapse;
-        margin: auto;
+    #boardForm {
+        width: 100%;
     }
 
-    td, tr {
+    #ajax-target {
+        margin: auto;
+    }
+     .minesweeper {
+         margin: auto;
+         background: #333;
+         padding: 50px 0;
+         border-radius: 8px;
+     }
+
+    .board {
+        margin: auto;
+        display: block;
         padding: 0;
         border: 2px solid black;
         margin: 0;
     }
 
-    .grid-row { margin: 0; }
-
-    .grid-cell { margin: 0; }
-
-    .cell form {
-        width: 50px !important;
-        height: 50px !important;
+    .board button:after {
         padding: 0;
         margin: 0;
     }
 
-    .cell {
-        background: #ccc;
-        width: 50px;
-        height: 50px;
-        /*border: 2px solid #333;
-        border-radius: 3px;*/
-        border: 0;
+    .grid-row {
         margin: 0;
-        font-size: large;
-        font-weight: 700;
+        display: flex;
+        justify-content: center;
         padding: 0;
+        height: 30px;
+        font-size: 0; /* remove space between cells*/
+    }
+
+    .cell {
+        width: 30px !important;
+        height: 30px !important;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        border: solid grey 1px;
+        background: lightgray;
+        font-size: 12px;
+        font-weight: bold;
+        color: lightgray;
+        border-radius: 4px;
     }
 
     .mine {
         background: #f33;
         border-color: #c11;
+        color: #f33;
     }
 
     .flag {
@@ -59,26 +73,45 @@
         border-color: #1c1;
     }
 
-    .cell-lose { border: 0; }
-
-    .cell-win { border: 3px solid #5a5; }
-
-    .cell-checked {
-        border: 0;
-        background: #fff
+    .cell-lose {
+        border: 1px solid #f00;
+        color: white;
     }
 
-    .cell-adjacent-1 { color: #88e; }
+    .cell-win {
+        border: 1px solid #5a5;
+        color: white;
+    }
 
-    .cell-adjacent-2 { color: #8cc; }
+    .cell-checked {
+        border: 1px solid grey;
+        background: white;
+        color: white;
+    }
 
-    .cell-adjacent-3 { color: #8e8; }
+    .cell-adjacent-1 {
+        background: darkslateblue;
+    }
 
-    .cell-adjacent-4 { color: #cc8; }
+    .cell-adjacent-2 {
+        background: darkseagreen;
+    }
 
-    .cell-adjacent-5, cell-adjacent-6 { color: #e87 }
+    .cell-adjacent-3 {
+        background: #ffbb33;
+    }
 
-    .cell-adjacent-7, cell-adjacent-8 { color: #f64 }
+    .cell-adjacent-4 {
+        background: #33cccc;
+    }
+
+    .cell-adjacent-5, cell-adjacent-6 {
+        background: #400000;
+    }
+
+    .cell-adjacent-7, cell-adjacent-8 {
+        background: coral;
+    }
 </style>
 <div>
     <div class="row" style="margin: 0 auto 50px; width: 100px; text-align: center">
@@ -86,12 +119,13 @@
 
     </div>
     <h4>@DateTime.Now</h4>
-    @using (Ajax.BeginForm("Play", "Game", ajax, new {id = "boardForm", @class = "col-md-10"}))
-    {
-        @Html.AntiForgeryToken()
-        <div id="ajax-target">
-            @Html.Partial("_Board", Model)
-        </div>
-    }
-
+    <div class="center-pls">
+        @using (Ajax.BeginForm("Play", "Game", ajax, new {id = "boardForm", @class = "col-md-10"}))
+        {
+            @Html.AntiForgeryToken()
+            <div id="ajax-target">
+                @Html.Partial("_Board", Model)
+            </div>
+        }
+    </div>
 </div>
