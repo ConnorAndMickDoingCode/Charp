@@ -1,0 +1,41 @@
+﻿@using Topic4.Models
+@model Tuple<List<CustomerModel>, CustomerModel>
+@{
+    ViewBag.Title = "Customer Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "customerInfo",
+        OnSuccess = "ajaxSuccess"
+    };
+    var script = @"$('#customerForm').trigger('submit');";
+}
+<div class="row">
+    <h3>@Html.Label("Please select a customer")</h3>
+</div>
+<div class="row">
+    @using (Ajax.BeginForm("OnSelectCustomer", "Customer", ajaxOption, new {id = "customerForm", @class = "col-md-10"}))
+    {
+        <script>
+            $.post(
+                '@Url.Action("GetMoreInfo", "Customer")',
+                { customer: 2 },
+                function(data) { alert(data) }
+            );
+        </script>
+        Html.AntiForgeryToken();
+        foreach (var customer in Model.Item1)
+        {
+            var selected = Model.Item1.IndexOf(customer) == 0;
+            @Html.RadioButton("customerString", customer.Id, selected, new {onchange = script})
+@*            @Html.RadioButton("customerString", customer.Id, selected, new {onchange = "this.form.submit();"})*@
+            @Html.Label(customer.Name)
+            <br/>
+        }
+        <div id="customerInfo">
+            @Html.Partial("_CustomerDetails", Model.Item2)
+        </div>
+    }
+</div>
