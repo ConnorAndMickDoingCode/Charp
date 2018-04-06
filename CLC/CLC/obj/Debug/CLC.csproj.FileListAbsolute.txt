@@ -174,3 +174,4 @@ C:\Users\speed\Documents\_repositories\CLC\CLC\obj\Debug\CLC.csprojResolveAssemb
 C:\Users\speed\Documents\_repositories\CLC\CLC\obj\Debug\CLC.csproj.CoreCompileInputs.cache
 C:\Users\speed\Documents\_repositories\CLC\CLC\obj\Debug\CLC.dll
 C:\Users\speed\Documents\_repositories\CLC\CLC\obj\Debug\CLC.pdb
+C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Debug\CLC.csproj.CopyComplete

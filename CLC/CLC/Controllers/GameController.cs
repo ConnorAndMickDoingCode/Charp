@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace CLC.Controllers
 {
@@ -35,13 +36,28 @@ namespace CLC.Controllers
         [HttpPost]
         public PartialViewResult Play(String cell)
         {
-            // start timer 
-
+            // parse request string
             var c = cell.Split(',');
             var x = int.Parse(c[0]);
             var y = int.Parse(c[1]);
+
+            // check if initialized:
+            if (!GameLogic.Started)
+                GameLogic.InitCells(x, y);
+
+            // start timer 
+
+            
             GameLogic.Check(x, y);
             return PartialView("_Board", GameLogic.Grid);
+        }
+
+        [HttpGet]
+        public ActionResult Save()
+        {
+            var json = new JavaScriptSerializer().Serialize(GameLogic.Grid);
+
+            return View("Game", GameLogic.Grid);
         }
     }
 }

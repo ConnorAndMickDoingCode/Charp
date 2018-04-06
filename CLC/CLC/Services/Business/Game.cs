@@ -8,26 +8,27 @@ namespace CLC.Services.Business
         public CellGrid Grid { get; set; }
         public int Mines { get; set; }
         public int Count { get; set; } = 0;
+        public bool Started { get; set; } = false;
 
         public Game(int w, int h, int m)
         {
             Mines = m;
             Grid = new CellGrid(h, w);
-            Grid.Cells = InitCells(w, h);
-        }
-
-        private Cell[,] InitCells(int w, int h)
-        {
-            var result = new Cell[w, h];
 
             // initialize cells
             for (int x = 0; x < w; x++)
             {
                 for (int y = 0; y < h; y++)
                 {
-                    result[x, y] = new Cell(x, y);
+                    Grid.Cells[x, y] = new Cell(x, y);
                 }
             }
+        }
+
+        public void InitCells(int fX, int fY)
+        {
+            int w = Grid.Width;
+            int h = Grid.Height;
 
             // set mines
             var ran = new Random();
@@ -35,22 +36,22 @@ namespace CLC.Services.Business
             {
                 var x = ran.Next(w);
                 var y = ran.Next(h);
-                if (result[x, y].Mine)
+                if (Grid.Cells[x, y].Mine || (x == fX && y == fY))
                     m--;
                 else
                 {
-                    result[x, y].Mine = true;
+                    Grid.Cells[x, y].Mine = true;
                     for (int rx = x - 1; rx < x + 2; rx++)
                     {
                         for (int ry = y - 1; ry < y + 2; ry++)
                         {
                             if (inBounds(rx, ry))
-                                result[rx, ry].Adjacent++;
+                                Grid.Cells[rx, ry].Adjacent++;
                         }
                     }
                 }
             }
-            return result;
+            Started = true;
         }
 
         public void Check(int x, int y)

@@ -7,6 +7,7 @@ using Topic4.Services.Utility;
 
 namespace Topic4.Controllers
 {
+    [CustomAction]
     public class LoginController : Controller
     {
         private static readonly CaptainsLogger Log = CaptainsLogger.getInstace();
@@ -31,6 +32,7 @@ namespace Topic4.Controllers
                     Log.Info("Model state is NOT valid");
                     return View("../Default/Welcome");
                 }
+
                 Log.Info("Model state IS valid");
                 var json = new JavaScriptSerializer().Serialize(model);
                 Log.Info("Parameters are: " + json);
@@ -47,6 +49,13 @@ namespace Topic4.Controllers
                 Log.Error(e.Message, "Exception in LoginController.Login");
                 throw;
             }
+        }
+
+        [HttpGet]
+        [CustomAuth]
+        public string Protected()
+        {
+            return "Whatever you want it to say";
         }
     }
 }
