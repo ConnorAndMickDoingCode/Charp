@@ -9,6 +9,7 @@
 
 using System.Data;
 using System.Data.SqlClient;
+using CLC.Exceptions;
 using CLC.Models;
 
 namespace CLC.Services.Data
@@ -54,17 +55,14 @@ namespace CLC.Services.Data
                     // Close the connection
                     cn.Close();
 
+                    // Return result of finder
                     return result;
                 }
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
-                throw e;
+                throw new MSDataException(e);
             }
-
-            // Return result of finder
-            return result;
         }
 
         /**
@@ -99,8 +97,7 @@ namespace CLC.Services.Data
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
-                throw e;
+                throw new MSDataException(e);
             }
 
             // Return result of finder
@@ -112,8 +109,6 @@ namespace CLC.Services.Data
          */
         public bool Create(User user)
         {
-            bool result = false;
-
             try
             {
                 // Setup INSERT query with parameters
@@ -130,18 +125,16 @@ namespace CLC.Services.Data
                     // Open the connection, execute INSERT, and close the connection
                     cn.Open();
                     int rows = cmd.ExecuteNonQuery();
-                    result = rows == 1;
                     cn.Close();
+                    return rows == 1;
                 }
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
-                throw e;
+                throw new MSDataException(e);
             }
 
             // Return result of create
-            return result;
         }
     }
 }

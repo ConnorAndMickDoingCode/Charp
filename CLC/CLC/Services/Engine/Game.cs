@@ -1,7 +1,7 @@
 ﻿using System;
 using CLC.Models;
 
-namespace CLC.Services.Business
+namespace CLC.Services.Engine
 {
     public class Game
     {

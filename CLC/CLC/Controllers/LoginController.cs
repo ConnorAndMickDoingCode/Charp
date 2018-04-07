@@ -14,7 +14,7 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View("Login");
+            return View("../Default/Index");
         }
 
         [HttpPost]
@@ -27,10 +27,10 @@ namespace CLC.Controllers
 
             bool results = service.Authenticate(user);
 
-            if (results)
-                return View("UserHomePage");
-            return View("LoginFailed");
-            
+            if (!results)
+                return View("LoginFailed");
+            Session["user"] = user;
+            return View("UserHomePage");
         }
 
         [HttpGet]

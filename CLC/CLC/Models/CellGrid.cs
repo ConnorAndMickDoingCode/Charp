@@ -1,8 +1,8 @@
 ﻿using System.Runtime.Serialization;
 
-namespace CLC.Models 
+namespace CLC.Models
 {
-    [DataContract] 
+    [DataContract]
     public class CellGrid
     {
         [DataMember] public Cell[,] Cells { get; set; }
@@ -10,6 +10,7 @@ namespace CLC.Models
         [DataMember] public int Width { get; set; }
         [DataMember] public bool Win { get; set; } = false;
         [DataMember] public bool Lose { get; set; } = false;
+        [DataMember] public int Time { get; set; } = 0;
 
         public CellGrid(int h, int w)
         {

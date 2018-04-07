@@ -2,29 +2,33 @@
 @{
     ViewBag.Title = "Game";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
-    var ajax = new AjaxOptions
+    var ajaxGame = new AjaxOptions
     {
         HttpMethod = "POST",
         InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "ajax-target",
         OnSuccess = "ajaxSuccess"
     };
-    // var script = @"$('#boardForm').trigger('submit');";
+    var ajaxSave = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "save-time",
+        OnSuccess = @"function() { alert('Game saved'); }"
+    };
+   
 }
 <style>
-    #boardForm {
-        width: 100%;
-    }
+    #boardForm { width: 100%; }
 
-    #ajax-target {
+    #ajax-target { margin: auto; }
+
+    .minesweeper {
         margin: auto;
+        background: #333;
+        padding: 50px 0;
+        border-radius: 8px;
     }
-     .minesweeper {
-         margin: auto;
-         background: #333;
-         padding: 50px 0;
-         border-radius: 8px;
-     }
 
     .board {
         margin: auto;
@@ -89,48 +93,71 @@
         color: white;
     }
 
-    .cell-adjacent-1 {
-        background: darkslateblue;
-    }
+    .cell-adjacent-1 { background: darkslateblue; }
 
-    .cell-adjacent-2 {
-        background: darkseagreen;
-    }
+    .cell-adjacent-2 { background: darkseagreen; }
 
-    .cell-adjacent-3 {
-        background: #ffbb33;
-    }
+    .cell-adjacent-3 { background: #ffbb33; }
 
-    .cell-adjacent-4 {
-        background: #33cccc;
-    }
+    .cell-adjacent-4 { background: #33cccc; }
 
-    .cell-adjacent-5, cell-adjacent-6 {
-        background: #400000;
-    }
+    .cell-adjacent-5, cell-adjacent-6 { background: #400000; }
 
-    .cell-adjacent-7, cell-adjacent-8 {
-        background: coral;
-    }
+    .cell-adjacent-7, cell-adjacent-8 { background: coral; }
 </style>
 <div class="container">
     <div class="row" style="margin: 0 auto 50px; width: 100px; text-align: center">
         <a href="~/Game">New Game</a>
 
     </div>
-    <h4>@DateTime.Now</h4>
-    <div class="center-pls">
-        @using (Ajax.BeginForm("Play", "Game", ajax, new {id = "boardForm", @class = "col-md-10"}))
+    <div class="row" style="margin: 0 auto; text-align: left">
+        @using (Ajax.BeginForm("Play", "Game", ajaxGame, new {id = "boardForm", @class = "col-md-10"}))
         {
-            @Html.AntiForgeryToken()
-            <div id="ajax-target">
-                @Html.Partial("_Board", Model)
+            <div class="col" id="timer">
+                <div id="current-time" style="display: inline">Time <span id="minutes"></span><span id="seconds"></span></div>
+                <input id="time-var" value="0" name="time" hidden/>
+                <script>
+                    // var script = "$('#boardForm').trigger('submit');";
+                    hasStarted = false;
+
+                    startTimer = function () {
+                        var mTarget = $("#minutes");
+                        var sTarget = $("#seconds");
+                        var tv = $("#time-var");
+                        var sTv = $("#save-time");
+                        mTarget.text("0:");
+                        sTarget.text("00");
+                        var time = 0;
+                        setInterval(function () {
+                                time++;
+                                tv.attr("value" , time);
+                                sTv.attr("value" , time);
+                                sTarget.text(time % 60 > 9 ? time % 60 : "0" + time % 60);
+                                mTarget.text(parseInt(time / 60) + ":");
+                            },
+                            1000);
+                    }
+
+                    ajaxSuccess = function() {
+                        if ($("#current-time").text() == "Time ")
+                            startTimer();
+                    }
+                    
+                </script>
+            </div>
+            <div class="center-pls">
+                @Html.AntiForgeryToken()
+                <div id="ajax-target">
+                    @Html.Partial("_Board", Model)
+                </div>
             </div>
         }
     </div>
+
     <div class="row">
-        @using (Html.BeginForm("Save", "Game", FormMethod.Get))
+        @using (Ajax.BeginForm("Save", "Game", ajaxSave, new { id = "boardForm", @class = "col-md-10" }))
         {
+            <input id="save-time" value="0" name="time" hidden/>
             <input type="submit" value="Save Game"/>
         }
     </div>

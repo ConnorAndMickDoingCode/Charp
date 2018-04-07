@@ -1,17 +1,16 @@
-﻿using CLC.Models;
-using CLC.Services.Business;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
+using CLC.Models;
+using CLC.Services.Engine;
+using CLC.Services.Business;
+using Newtonsoft.Json;
 
 namespace CLC.Controllers
 {
     public class GameController : Controller
     {
         public static Game GameLogic { get; set; }
+        public static int MoveCount { get; set; }
 
         // GET: Game
         [HttpGet]
@@ -34,30 +33,58 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult Play(String cell)
+        public PartialViewResult Play(String time, String cell)
         {
             // parse request string
             var c = cell.Split(',');
             var x = int.Parse(c[0]);
             var y = int.Parse(c[1]);
 
-            // check if initialized:
+            // check if initialized (prevent instant-deaths)
             if (!GameLogic.Started)
                 GameLogic.InitCells(x, y);
 
-            // start timer 
-
-            
+            // update game board
             GameLogic.Check(x, y);
+
+            // update time
+            GameLogic.Grid.Time = int.Parse(time);
+
+            // Save if not recently saved
+            MoveCount++;
+            if (MoveCount % 3 == 0)
+                SaveGameState();
+
+            // return game-board partial view
             return PartialView("_Board", GameLogic.Grid);
         }
 
         [HttpGet]
-        public ActionResult Save()
+        public void Save(string time)
         {
-            var json = new JavaScriptSerializer().Serialize(GameLogic.Grid);
+            // update time
+            GameLogic.Grid.Time = int.Parse(time);
 
-            return View("Game", GameLogic.Grid);
+            // save game
+            SaveGameState();
+        }
+
+        private void SaveGameState()
+        {
+            // make sure user is logged in
+            if (Session["user"] == null)
+            {
+
+            }
+            else
+            {
+                // serialize Grid into JSON
+                var json = JsonConvert.SerializeObject(GameLogic.Grid);
+
+                // save JSON in DB
+                var service = new GameStateService();
+                service.SaveGame((User) Session["user"], json);
+            }
         }
     }
 }
