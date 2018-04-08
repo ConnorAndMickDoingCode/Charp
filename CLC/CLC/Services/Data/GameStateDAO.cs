@@ -21,7 +21,7 @@ namespace CLC.Services.Data
                                           "ApplicationIntent=ReadWrite;" +
                                           "MultiSubnetFailover=False";
 
-        public void Create(User user, string json)
+        public int Create(User user, string json)
         {
             try
             {
@@ -40,6 +40,25 @@ namespace CLC.Services.Data
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();
+                }
+
+                // Setup SELECT query with parameters
+                query = "SELECT ID FROM dbo.Games WHERE STATE = @State";
+
+                // Create connection and command
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    // Set query parameters and their values
+                    cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = json;
+
+                    // Open the connection, execute SELECT, retrieve ID
+                    cn.Open();
+                    var reader = cmd.ExecuteReader();
+                    reader.Read();
+                    var result = reader.GetInt32(0);
+                    cn.Close();
+                    return result;
                 }
             }
             catch (SqlException e)

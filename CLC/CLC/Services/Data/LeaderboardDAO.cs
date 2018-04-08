@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CLC.Services.Data
 {
-    public class GameStatDAO
+    public class LeaderboardDAO
     {
     }
 }

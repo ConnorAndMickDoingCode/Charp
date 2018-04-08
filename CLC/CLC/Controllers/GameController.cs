@@ -10,7 +10,6 @@ namespace CLC.Controllers
     public class GameController : Controller
     {
         public static Game GameLogic { get; set; }
-        public static int MoveCount { get; set; }
 
         // GET: Game
         [HttpGet]
@@ -51,8 +50,8 @@ namespace CLC.Controllers
             GameLogic.Grid.Time = int.Parse(time);
 
             // Save if not recently saved
-            MoveCount++;
-            if (MoveCount % 3 == 0)
+            GameLogic.Grid.Moves++;
+            if (GameLogic.Grid.Moves % 3 == 0)
                 SaveGameState();
 
             // return game-board partial view
@@ -74,7 +73,7 @@ namespace CLC.Controllers
             // make sure user is logged in
             if (Session["user"] == null)
             {
-
+                // TODO 
             }
             else
             {
@@ -83,7 +82,14 @@ namespace CLC.Controllers
 
                 // save JSON in DB
                 var service = new GameStateService();
-                service.SaveGame((User) Session["user"], json);
+
+                // if game has not been saved yet, ID will be one. Create new save and update ID
+                if (GameLogic.Grid.Id == -1)
+                    GameLogic.Grid.Id = service.SaveGame((User)Session["user"], json);
+
+                // else, update existing game
+                else
+                    service.UpdateGame(GameLogic.Grid.Id, json);
             }
         }
     }
