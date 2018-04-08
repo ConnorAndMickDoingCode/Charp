@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLC", "CLC\CLC.csproj", "{3EDF43A9-540B-4347-9D3D-52B436FB6555}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinesweeperStatsService", "MinesweeperStatsService\MinesweeperStatsService.csproj", "{77240DB6-32CD-4703-9A08-BAE0C736B669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3EDF43A9-540B-4347-9D3D-52B436FB6555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EDF43A9-540B-4347-9D3D-52B436FB6555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EDF43A9-540B-4347-9D3D-52B436FB6555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77240DB6-32CD-4703-9A08-BAE0C736B669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77240DB6-32CD-4703-9A08-BAE0C736B669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77240DB6-32CD-4703-9A08-BAE0C736B669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77240DB6-32CD-4703-9A08-BAE0C736B669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
