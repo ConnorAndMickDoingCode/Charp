@@ -16,7 +16,13 @@
         UpdateTargetId = "save-time",
         OnSuccess = @"function() { alert('Game saved'); }"
     };
-   
+    var ajaxLoad = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+
+    };
+
 }
 <style>
     #boardForm { width: 100%; }
@@ -113,8 +119,8 @@
     <div class="row" style="margin: 0 auto; text-align: left">
         @using (Ajax.BeginForm("Play", "Game", ajaxGame, new {id = "boardForm", @class = "col-md-10"}))
         {
-            <div class="col" id="timer">
-                <div id="current-time" style="display: inline">Time <span id="minutes"></span><span id="seconds"></span></div>
+            <div class="col" id="timer" align="center">
+                <div id="current-time" style="display: inline" align="center">Time <span id="minutes"></span><span id="seconds"></span></div>
                 <input id="time-var" value="0" name="time" hidden/>
                 <script>
                     // var script = "$('#boardForm').trigger('submit');";
@@ -154,11 +160,15 @@
         }
     </div>
 
-    <div class="row">
+    <div class="row" align="center">
         @using (Ajax.BeginForm("Save", "Game", ajaxSave, new { id = "boardForm", @class = "col-md-10" }))
         {
             <input id="save-time" value="0" name="time" hidden/>
             <input type="submit" value="Save Game"/>
+        }
+        @using (Ajax.BeginForm("Load", "Game", ajaxLoad, new { id = "boardForm", @class = "col=md-10" }))
+        {
+
         }
     </div>
 </div>

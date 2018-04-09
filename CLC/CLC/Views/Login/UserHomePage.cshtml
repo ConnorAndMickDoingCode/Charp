@@ -1,8 +1,14 @@
-﻿
+﻿@using CLC.Models
+@model CLC.Models.User
 @{
     ViewBag.Title = "UserHomePage";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
+
+<style>
+
+
+</style>
 
 <!DOCTYPE html>
 
@@ -13,8 +19,11 @@
     <div>
         <div class="jumbotron" style="background-color:#ffffff;">
             <h1 style="text-align:center;">user home</h1>
-            <br />
-            <a href="~/Game">Play game</a>
+            
+            <div align="center">
+                <a href="~/Game">Play game</a>
+            </div>
+            
         </div>
     </div>
 

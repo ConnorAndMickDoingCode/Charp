@@ -3,15 +3,20 @@
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 
-<div class="container">
+<div class="container" align="center">
     <div class="row">
-        <div class="col">
+        <div class="col" align="center">
             <h3>Select game size:</h3>
             @using (Html.BeginForm("Select", "Game"))
             {
                 <button type="submit" name="size" value="small" class="">Small</button>
                 <button type="submit" name="size" value="medium" class="">Medium</button>
                 <button type="submit" name="size" value="large" class="">Large</button>
+
+                <br />
+                <br />
+
+                <button type="submit" name="load" value="loadgame">Load Game</button>
             }
         </div>
     </div>

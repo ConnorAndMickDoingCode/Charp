@@ -86,5 +86,13 @@ namespace CLC.Controllers
                 service.SaveGame((User) Session["user"], json);
             }
         }
+
+        private void LoadGame()
+        {
+          if(GameLogic.Started == true)
+            {
+                
+            }
+        }
     }
 }
