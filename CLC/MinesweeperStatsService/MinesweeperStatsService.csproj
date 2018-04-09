@@ -66,10 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO.cs" />
+    <Compile Include="IStatsService.cs" />
     <Compile Include="StatsService.svc.cs">
       <DependentUpon>StatsService.svc</DependentUpon>
     </Compile>
-    <Compile Include="StatsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

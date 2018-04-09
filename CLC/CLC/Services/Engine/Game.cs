@@ -1,5 +1,6 @@
 ﻿using System;
 using CLC.Models;
+using CLC.Services.Business;
 
 namespace CLC.Services.Engine
 {
@@ -13,7 +14,7 @@ namespace CLC.Services.Engine
         public Game(int w, int h, int m)
         {
             Mines = m;
-            Grid = new CellGrid(h, w);
+            Grid = new CellGrid(h, w, m);
 
             // initialize cells
             for (int x = 0; x < w; x++)
@@ -51,6 +52,7 @@ namespace CLC.Services.Engine
                     }
                 }
             }
+
             Started = true;
         }
 
@@ -79,6 +81,49 @@ namespace CLC.Services.Engine
 
             // check for Win
             Grid.Win = Count + Mines == (Grid.Height * Grid.Width);
+        }
+
+        public void UpdateState(string cell, string time)
+        {
+            // parse request string
+            var c = cell.Split(',');
+            var x = int.Parse(c[0]);
+            var y = int.Parse(c[1]);
+
+            // check if initialized (prevent instant-deaths)
+            if (!Started)
+                InitCells(x, y);
+
+            // update game board
+            Check(x, y);
+
+            // update time and click stats
+            Grid.Time = int.Parse(time);
+            Grid.Moves++;
+        }
+
+        public void EndGame(User user)
+        {
+            // remove save game from database
+            var service = new GameStateService();
+            service.DeleteGame(Grid.Id);
+
+            // if win: add to leaderboard
+            if (Grid.Win)
+            {
+                try
+                {
+                    // pass user and game grid to create the game stat object in service
+                    var leaderboardService = new LeaderboardService();
+                    leaderboardService.record(user, Grid);
+                }
+                catch (Exception e)
+                {
+                    // TODO: make better
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
         }
 
         public void Flag(int x, int y)

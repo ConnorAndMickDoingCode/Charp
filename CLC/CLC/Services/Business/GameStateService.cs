@@ -29,6 +29,12 @@ namespace CLC.Services.Business
             Service.Update(json, id);
         }
 
+        public void DeleteGame(int id)
+        {
+            // call data service and pass JSON
+            Service.Delete(id);
+        }
+
         public CellGrid LoadGame(int id)
         {
             // call data base method to get JSON
@@ -36,6 +42,21 @@ namespace CLC.Services.Business
 
             // parse JSON into CellGrid and return
             return JsonConvert.DeserializeObject<CellGrid>(json);
+        }
+
+        public List<CellGrid> GetSavedGames(User user)
+        {
+            // call data base method to get JSON
+            var json = Service.Read(user);
+
+            // parse JSON into a list of CellGrid objects and return
+            List<CellGrid> games = new List<CellGrid>();
+            foreach (var e in json)
+            {
+                games.Add(JsonConvert.DeserializeObject<CellGrid>(e));
+            }
+
+            return games;
         }
     }
 }

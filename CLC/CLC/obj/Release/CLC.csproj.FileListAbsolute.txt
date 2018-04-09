@@ -71,8 +71,8 @@ C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\bin\System.Web.Razor.xml
 C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\bin\System.Web.WebPages.xml
 C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\bin\System.Web.WebPages.Deployment.xml
 C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\bin\System.Web.WebPages.Razor.xml
-C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Debug\CLC.csprojResolveAssemblyReference.cache
-C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Debug\CLC.csproj.CoreCompileInputs.cache
-C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Debug\CLC.csproj.CopyComplete
-C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Debug\CLC.dll
-C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Debug\CLC.pdb
+C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Release\CLC.csprojResolveAssemblyReference.cache
+C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Release\CLC.csproj.CoreCompileInputs.cache
+C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Release\CLC.csproj.CopyComplete
+C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Release\CLC.dll
+C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\obj\Release\CLC.pdb

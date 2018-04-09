@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Web.Mvc;
 using CLC.Models;
 using CLC.Services.Engine;
@@ -15,6 +17,8 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            User user = (Session["user"] is User) ? (User) Session["user"] : null;
+
             return View("Select");
         }
 
@@ -34,23 +38,19 @@ namespace CLC.Controllers
         [HttpPost]
         public PartialViewResult Play(String time, String cell)
         {
-            // parse request string
-            var c = cell.Split(',');
-            var x = int.Parse(c[0]);
-            var y = int.Parse(c[1]);
+            // run cell check logic
+            GameLogic.UpdateState(cell, time);
 
-            // check if initialized (prevent instant-deaths)
-            if (!GameLogic.Started)
-                GameLogic.InitCells(x, y);
+            // end game conditions
+            if (GameLogic.Grid.Win || GameLogic.Grid.Lose)
+            {
+                GameLogic.EndGame((User)Session["user"]);
 
-            // update game board
-            GameLogic.Check(x, y);
-
-            // update time
-            GameLogic.Grid.Time = int.Parse(time);
+                // return view
+                return PartialView("_Board", GameLogic.Grid);
+            }
 
             // Save if not recently saved
-            GameLogic.Grid.Moves++;
             if (GameLogic.Grid.Moves % 3 == 0)
                 SaveGameState();
 
@@ -85,7 +85,7 @@ namespace CLC.Controllers
 
                 // if game has not been saved yet, ID will be one. Create new save and update ID
                 if (GameLogic.Grid.Id == -1)
-                    GameLogic.Grid.Id = service.SaveGame((User)Session["user"], json);
+                    GameLogic.Grid.Id = service.SaveGame((User) Session["user"], json);
 
                 // else, update existing game
                 else
@@ -93,12 +93,18 @@ namespace CLC.Controllers
             }
         }
 
-        private void LoadGame()
+        [HttpPost]
+        public ActionResult LoadGame(int id)
         {
-          if(GameLogic.Started == true)
-            {
-                
-            }
+            // get game by id
+            var service = new GameStateService();
+            var grid = service.LoadGame(id);
+
+            // create GameLogic using grid data
+            GameLogic = new Game(grid.Width, grid.Height, grid.Mines) {Grid = grid};
+
+            // return Game view with grid
+            return View("Game", GameLogic.Grid);
         }
     }
 }
