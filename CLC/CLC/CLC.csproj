@@ -188,9 +188,12 @@
     </Compile>
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\CellGrid.cs" />
+    <Compile Include="Models\GameStat.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Business\GameStateService.cs" />
+    <Compile Include="Services\Business\LeaderboardService.cs" />
+    <Compile Include="Services\Data\LeaderboardDAO.cs" />
     <Compile Include="Services\Engine\Game.cs" />
     <Compile Include="Services\Business\SecurityService.cs" />
     <Compile Include="Services\Data\GameStateDAO.cs" />

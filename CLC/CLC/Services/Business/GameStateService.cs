@@ -17,10 +17,16 @@ namespace CLC.Services.Business
             Service = new GameStateDAO();
         }
 
-        public void SaveGame(User user, string json)
+        public int SaveGame(User user, string json)
         {
             // call data service and pass JSON
-            Service.Create(user, json);
+            return Service.Create(user, json);
+        }
+
+        public void UpdateGame(int id, string json)
+        {
+            // call data service and pass JSON
+            Service.Update(json, id);
         }
 
         public CellGrid LoadGame(int id)

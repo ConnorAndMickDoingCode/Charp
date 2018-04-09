@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MinesweeperStatsService.StatsService" CodeBehind="StatsService.svc.cs" %>
