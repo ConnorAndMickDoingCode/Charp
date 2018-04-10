@@ -14,9 +14,5 @@ namespace MinesweeperStatsService
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "Stats/")]
         DTO GetAll();
-
-        [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "Stats/{id}")]
-        DTO GetById(string id);
     }
 }

@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using CLC.Models;
+using CLC.Services.Business;
 
 namespace MinesweeperStatsService
 {
@@ -14,12 +16,18 @@ namespace MinesweeperStatsService
     {
         public DTO GetAll()
         {
-            throw new NotImplementedException();
-        }
+            // get leaderboards from db
+            var service = new LeaderboardService();
+            var data = service.getLeaderboards();
 
-        public DTO GetById(string id)
-        {
-            throw new NotImplementedException();
+            // determine response messages and error code
+            var ok = data.Count > 0;
+            var errorCode = ok ? 200 : 404;
+            var statusMessage = ok ? "Success" : "No Results";
+
+            // ship it
+            var dto = new DTO(errorCode, statusMessage, data);
+            return dto;
         }
     }
 }
