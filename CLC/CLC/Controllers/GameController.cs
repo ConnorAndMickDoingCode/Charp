@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Web.Mvc;
 using CLC.Models;
 using CLC.Services.Engine;
@@ -18,6 +16,12 @@ namespace CLC.Controllers
         public ActionResult Index()
         {
             User user = (Session["user"] is User) ? (User) Session["user"] : null;
+            if (user != null)
+            {
+                var service = new GameStateService();
+                var games = service.GetSavedGames(user);
+                return View("Select", games);
+            }
 
             return View("Select");
         }

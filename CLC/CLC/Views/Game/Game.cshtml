@@ -125,14 +125,22 @@
                 <script>
                     // var script = "$('#boardForm').trigger('submit');";
                     hasStarted = false;
-
+                    
                     startTimer = function () {
+
+                        // html elements to update
                         var mTarget = $("#minutes");
                         var sTarget = $("#seconds");
-                        var tv = $("#time-var");
-                        var sTv = $("#save-time");
                         mTarget.text("0:");
                         sTarget.text("00");
+
+                        // display time
+                        var tv = $("#time-var");
+
+                        // time for saving on "save game" button click
+                        var sTv = $("#save-time");
+
+                        // start timer 
                         var time = 0;
                         setInterval(function () {
                                 time++;
@@ -150,6 +158,7 @@
                     }
                     
                 </script>
+
             </div>
             <div class="center-pls">
                 @Html.AntiForgeryToken()

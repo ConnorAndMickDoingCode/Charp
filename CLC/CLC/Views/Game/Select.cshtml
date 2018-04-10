@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<CLC.Models.CellGrid>
+@{
     ViewBag.Title = "Select";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
@@ -13,12 +14,16 @@
                 <button type="submit" name="size" value="medium" class="">Medium</button>
                 <button type="submit" name="size" value="large" class="">Large</button>
 
-                <br />
-                <br />
-
-                <button type="submit" name="load" value="loadgame">Load Game</button>
+                <br/>
+                <br/>
+            }
+            @foreach (var e in Model)
+            {
+                using (Html.BeginForm("LoadGame", "Game"))
+                {
+                    <button type="submit" name="id" value="@e.Id">Time: @e.Time Moves: @e.Moves</button>
+                }
             }
         </div>
     </div>
 </div>
-

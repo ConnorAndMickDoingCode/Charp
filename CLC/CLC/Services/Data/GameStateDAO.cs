@@ -170,7 +170,7 @@ namespace CLC.Services.Data
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
                     // Set query parameters and their values
-                    cmd.Parameters.Add("@USERNAME", SqlDbType.VarChar, 50).Value = user.Username;
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar, 50).Value = user.Username;
 
                     // Open the connection
                     cn.Open();
@@ -180,7 +180,7 @@ namespace CLC.Services.Data
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        result.Add(reader.GetString(1));
+                        result.Add(reader.GetString(2));
                     }
 
                     // Close the connection

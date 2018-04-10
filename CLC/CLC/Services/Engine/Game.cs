@@ -6,11 +6,14 @@ namespace CLC.Services.Engine
 {
     public class Game
     {
-        public CellGrid Grid { get; set; }
-        
+        public CellGrid Grid { get; set; } // (container for cells and game status)
 
+        /**
+         * Constructor
+         */
         public Game(int w, int h, int m)
         {
+            // create cellgrid (container for cells and game status)
             Grid = new CellGrid(h, w, m);
 
             // initialize cells
@@ -22,23 +25,34 @@ namespace CLC.Services.Engine
                 }
             }
         }
-
+        
+        /**
+         * Generate Cell objects for Cell Grid
+         */
         public void InitCells(int fX, int fY)
         {
+            // loop parameters
             int w = Grid.Width;
             int h = Grid.Height;
+            var ran = new Random();
 
             // set mines
-            var ran = new Random();
             for (int m = 0; m < Grid.Mines; m++)
             {
+                // get random ints for x and y within Grid bounds
                 var x = ran.Next(w);
                 var y = ran.Next(h);
+
+                // if a mine already exists OR location = first cell click: decrement mine count - do not add
                 if (Grid.Cells[x, y].Mine || (x == fX && y == fY))
                     m--;
+
+                // else add mine
                 else
                 {
                     Grid.Cells[x, y].Mine = true;
+
+                    // add ajacents to neighbors
                     for (int rx = x - 1; rx < x + 2; rx++)
                     {
                         for (int ry = y - 1; ry < y + 2; ry++)
@@ -50,6 +64,7 @@ namespace CLC.Services.Engine
                 }
             }
 
+            // prevent entering this function again.
             Grid.Started = true;
         }
 
