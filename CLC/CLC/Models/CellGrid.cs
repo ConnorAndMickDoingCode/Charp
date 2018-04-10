@@ -14,7 +14,13 @@ namespace CLC.Models
         [DataMember] public bool Lose { get; set; } = false;
         [DataMember] public int Time { get; set; } = 0;
         [DataMember] public int Moves { get; set; } = 0;
+        [DataMember] public int Count { get; set; } = 0;
+        [DataMember] public bool Started { get; set; } = false;
 
+        public CellGrid()
+        {
+
+        }
 
         public CellGrid(int h, int w, int m)
         {

@@ -11,6 +11,7 @@ namespace CLC.Models
     {
         [DataMember] public int Id { get; set; }
         [DataMember] public int Time { get; set; }
+        [DataMember] public int Count { get; set; }
         [DataMember] public string Size { get; set; }
         [DataMember] public string Username { get; set; }
     }

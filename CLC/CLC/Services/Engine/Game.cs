@@ -7,13 +7,10 @@ namespace CLC.Services.Engine
     public class Game
     {
         public CellGrid Grid { get; set; }
-        public int Mines { get; set; }
-        public int Count { get; set; } = 0;
-        public bool Started { get; set; } = false;
+        
 
         public Game(int w, int h, int m)
         {
-            Mines = m;
             Grid = new CellGrid(h, w, m);
 
             // initialize cells
@@ -33,7 +30,7 @@ namespace CLC.Services.Engine
 
             // set mines
             var ran = new Random();
-            for (int m = 0; m < Mines; m++)
+            for (int m = 0; m < Grid.Mines; m++)
             {
                 var x = ran.Next(w);
                 var y = ran.Next(h);
@@ -53,7 +50,7 @@ namespace CLC.Services.Engine
                 }
             }
 
-            Started = true;
+            Grid.Started = true;
         }
 
         public void Check(int x, int y)
@@ -61,7 +58,7 @@ namespace CLC.Services.Engine
             // check cell
             var c = Grid.Cells[x, y];
             c.Checked = true;
-            Count++;
+            Grid.Count++;
 
             // reveal nearby, if necessary
             if (c.Adjacent == 0)
@@ -80,7 +77,7 @@ namespace CLC.Services.Engine
             Grid.Lose = c.Mine;
 
             // check for Win
-            Grid.Win = Count + Mines == (Grid.Height * Grid.Width);
+            Grid.Win = Grid.Count + Grid.Mines == (Grid.Height * Grid.Width);
         }
 
         public void UpdateState(string cell, string time)
@@ -91,7 +88,7 @@ namespace CLC.Services.Engine
             var y = int.Parse(c[1]);
 
             // check if initialized (prevent instant-deaths)
-            if (!Started)
+            if (!Grid.Started)
                 InitCells(x, y);
 
             // update game board

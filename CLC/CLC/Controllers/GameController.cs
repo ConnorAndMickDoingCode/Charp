@@ -44,7 +44,7 @@ namespace CLC.Controllers
             // end game conditions
             if (GameLogic.Grid.Win || GameLogic.Grid.Lose)
             {
-                GameLogic.EndGame((User)Session["user"]);
+                GameLogic.EndGame((User) Session["user"]);
 
                 // return view
                 return PartialView("_Board", GameLogic.Grid);

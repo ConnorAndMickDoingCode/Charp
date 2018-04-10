@@ -18,7 +18,8 @@ namespace CLC.Services.Business
             {
                 Username = user.Username,
                 Size = grid.Width + "x" + grid.Height,
-                Time = grid.Time
+                Time = grid.Time,
+                Count = grid.Count
             };
 
             // send to db
