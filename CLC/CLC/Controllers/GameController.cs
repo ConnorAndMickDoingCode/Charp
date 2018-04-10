@@ -30,7 +30,7 @@ namespace CLC.Controllers
             else if (size.Equals("medium"))
                 GameLogic = new Game(12, 12, 22);
             else // if (size.Equals("small"))
-                GameLogic = new Game(9, 9, 12);
+                GameLogic = new Game(9, 9, 5);
 
             return View("Game", GameLogic.Grid);
         }

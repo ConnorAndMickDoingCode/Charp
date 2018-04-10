@@ -26,5 +26,25 @@ namespace CLC.Services.Business
             var service = new LeaderboardDAO();
             service.Create(game);
         }
+
+        public List<GameStat> getLeaderboards()
+        {
+            var service = new LeaderboardDAO();
+            var list = service.Read();
+            List<GameStat> result = new List<GameStat>();
+            foreach (var item in list)
+            {
+                result.Add(new GameStat()
+                {
+                    Id = Int32.Parse(item[0]),
+                    Username = item[1],
+                    Size = item[2],
+                    Time = Int32.Parse(item[3]),
+                    Count = Int32.Parse(item[4])
+                });
+            }
+
+            return result;
+        }
     }
 }
