@@ -71,11 +71,11 @@ namespace CLC.Services.Data
                     {
                         string[] a =
                         {
-                            reader.GetString(0),
+                            "" + reader.GetInt32(0),
                             reader.GetString(1),
                             reader.GetString(2),
-                            reader.GetString(3),
-                            reader.GetString(4)
+                            "" + reader.GetInt32(3),
+                            "" + reader.GetInt32(4)
                         };
                         result.Add(a);
                     }

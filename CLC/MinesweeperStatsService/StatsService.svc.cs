@@ -14,7 +14,7 @@ namespace MinesweeperStatsService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StatsService.svc or StatsService.svc.cs at the Solution Explorer and start debugging.
     public class StatsService : IStatsService
     {
-        public DTO GetAll()
+        public DTO GetLeaderboard()
         {
             // get leaderboards from db
             var service = new LeaderboardService();

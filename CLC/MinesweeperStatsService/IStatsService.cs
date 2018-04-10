@@ -12,7 +12,7 @@ namespace MinesweeperStatsService
     public interface IStatsService
     {
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "Stats/")]
-        DTO GetAll();
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetLeaderboard/")]
+        DTO GetLeaderboard();
     }
 }
