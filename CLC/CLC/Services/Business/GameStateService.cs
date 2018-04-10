@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CLC.Models;
 using CLC.Services.Data;
+using CLC.Services.Engine;
 using Newtonsoft.Json;
 
 namespace CLC.Services.Business
@@ -17,16 +18,24 @@ namespace CLC.Services.Business
             Service = new GameStateDAO();
         }
 
-        public int SaveGame(User user, string json)
+        public int SaveGame(User user, CellGrid game)
         {
+            // get next id in db
+            game.Id = Service.GetNextId();
+
+            // serialize Grid into JSON
+            var json = JsonConvert.SerializeObject(game);
+
             // call data service and pass JSON
             return Service.Create(user, json);
         }
 
-        public void UpdateGame(int id, string json)
+        public void UpdateGame(CellGrid game)
         {
+            // serialize Grid into JSON
+            var json = JsonConvert.SerializeObject(game);
             // call data service and pass JSON
-            Service.Update(json, id);
+            Service.Update(json, game.Id);
         }
 
         public void DeleteGame(int id)

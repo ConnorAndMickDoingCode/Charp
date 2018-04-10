@@ -72,7 +72,7 @@ namespace CLC.Services.Data
             try
             {
                 // Setup SELECT query with parameters
-                string query = "UPDATE dbo.Games SET STATE = @State WHERE id = @Id";
+                string query = "UPDATE dbo.Games SET STATE = @State WHERE id = @id";
 
                 // Create connection and command
                 using (SqlConnection cn = new SqlConnection(connectionString))
@@ -80,7 +80,7 @@ namespace CLC.Services.Data
                 {
                     // Set query parameters and their values
                     cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = json;
-                    cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
 
                     // Open the connection, execute INSERT, and close the connection
                     cn.Open();
@@ -99,14 +99,14 @@ namespace CLC.Services.Data
             try
             {
                 // Setup SELECT query with parameters
-                string query = "DELETE FROM dbo.Games WHERE id = @Id";
+                string query = "DELETE FROM dbo.Games WHERE id = @id";
 
                 // Create connection and command
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
                     // Set query parameters and their values
-                    cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
 
                     // Open the connection, execute INSERT, and close the connection
                     cn.Open();
@@ -125,14 +125,14 @@ namespace CLC.Services.Data
             try
             {
                 // Setup SELECT query with parameters
-                string query = "SELECT * FROM dbo.Games WHERE ID=@Id";
+                string query = "SELECT * FROM dbo.Games WHERE ID=@id";
 
                 // Create connection and command
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
                     // Set query parameters and their values
-                    cmd.Parameters.Add("@Id", SqlDbType.VarChar, 50).Value = id;
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar, 50).Value = id;
 
                     // Open the connection
                     cn.Open();
@@ -188,6 +188,36 @@ namespace CLC.Services.Data
 
                     // Return result of finder
                     return result;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new MSDataException(e);
+            }
+        }
+
+        public int GetNextId()
+        {
+            try
+            {
+                // Setup SELECT query with parameters
+                string query = "SELECT IDENT_CURRENT (\'Games\') AS \"max\";";
+
+                // Create connection and command
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    // Open the connection
+                    cn.Open();
+
+                    // Using a DataReader see if query returns any rows
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    // Close the connection
+                    cn.Close();
+
+                    // Return result of finder
+                    return result + 1;
                 }
             }
             catch (SqlException e)

@@ -34,9 +34,9 @@ namespace CLC.Controllers
             else if (size.Equals("medium"))
                 GameLogic = new Game(12, 12, 22);
             else // if (size.Equals("small"))
-                GameLogic = new Game(9, 9, 5);
+                GameLogic = new Game(9, 9, 12);
 
-            return View("Game", GameLogic.Grid);
+            return View("Game", GameLogic.Grid); 
         }
 
         [HttpPost]
@@ -81,19 +81,17 @@ namespace CLC.Controllers
             }
             else
             {
-                // serialize Grid into JSON
-                var json = JsonConvert.SerializeObject(GameLogic.Grid);
 
                 // save JSON in DB
                 var service = new GameStateService();
 
                 // if game has not been saved yet, ID will be one. Create new save and update ID
                 if (GameLogic.Grid.Id == -1)
-                    GameLogic.Grid.Id = service.SaveGame((User) Session["user"], json);
+                    GameLogic.Grid.Id = service.SaveGame((User) Session["user"], GameLogic.Grid);
 
                 // else, update existing game
                 else
-                    service.UpdateGame(GameLogic.Grid.Id, json);
+                    service.UpdateGame(GameLogic.Grid);
             }
         }
 

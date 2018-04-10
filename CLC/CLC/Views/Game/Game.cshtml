@@ -14,15 +14,8 @@
         HttpMethod = "POST",
         InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "save-time",
-        OnSuccess = @"function() { alert('Game saved'); }"
+        OnSuccess = "saveSuccess"
     };
-    var ajaxLoad = new AjaxOptions
-    {
-        HttpMethod = "GET",
-        InsertionMode = InsertionMode.Replace,
-
-    };
-
 }
 <style>
     #boardForm { width: 100%; }
@@ -125,8 +118,8 @@
                 <script>
                     // var script = "$('#boardForm').trigger('submit');";
                     hasStarted = false;
-                    
-                    startTimer = function () {
+
+                    startTimer = function() {
 
                         // html elements to update
                         var mTarget = $("#minutes");
@@ -141,11 +134,18 @@
                         var sTv = $("#save-time");
 
                         // start timer 
-                        var time = 0;
-                        setInterval(function () {
+                        var time = @if (Model.Time > 0){
+                                       @: @Model.Time;
+                                   }
+                                   else
+                                   {
+                                       @: 0
+                                   }
+                            ;
+                        setInterval(function() {
                                 time++;
-                                tv.attr("value" , time);
-                                sTv.attr("value" , time);
+                                tv.attr("value", time);
+                                sTv.attr("value", time);
                                 sTarget.text(time % 60 > 9 ? time % 60 : "0" + time % 60);
                                 mTarget.text(parseInt(time / 60) + ":");
                             },
@@ -156,7 +156,11 @@
                         if ($("#current-time").text() == "Time ")
                             startTimer();
                     }
-                    
+
+                    saveSuccess = function() {
+                        alert('Game saved');
+                    }
+
                 </script>
 
             </div>
@@ -170,14 +174,10 @@
     </div>
 
     <div class="row" align="center">
-        @using (Ajax.BeginForm("Save", "Game", ajaxSave, new { id = "boardForm", @class = "col-md-10" }))
+        @using (Ajax.BeginForm("Save", "Game", ajaxSave, new {id = "boardForm", @class = "col-md-10"}))
         {
             <input id="save-time" value="0" name="time" hidden/>
             <input type="submit" value="Save Game"/>
-        }
-        @using (Ajax.BeginForm("Load", "Game", ajaxLoad, new { id = "boardForm", @class = "col=md-10" }))
-        {
-
         }
     </div>
 </div>
