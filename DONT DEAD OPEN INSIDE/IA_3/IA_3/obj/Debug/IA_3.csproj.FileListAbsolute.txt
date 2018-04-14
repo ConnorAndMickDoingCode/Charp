@@ -1,7 +1,0 @@
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\obj\Debug\IA_3.csprojResolveAssemblyReference.cache
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\obj\Debug\IA_3.csproj.CoreCompileInputs.cache
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\bin\Debug\IA_3.exe.config
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\bin\Debug\IA_3.exe
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\bin\Debug\IA_3.pdb
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\obj\Debug\IA_3.exe
-C:\cst-201\Code Workspace\2017 VS c++\Individual Assignments\IA_3\IA_3\obj\Debug\IA_3.pdb
