@@ -27,7 +27,9 @@ namespace CLC.Services.Business
             var json = JsonConvert.SerializeObject(game);
 
             // call data service and pass JSON
-            return Service.Create(user, json);
+            Service.Create(user, json);
+
+            return game.Id;
         }
 
         public void UpdateGame(CellGrid game)

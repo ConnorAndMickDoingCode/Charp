@@ -36,7 +36,7 @@ namespace CLC.Controllers
             else // if (size.Equals("small"))
                 GameLogic = new Game(9, 9, 12);
 
-            return View("Game", GameLogic.Grid); 
+            return View("Game", GameLogic.Grid);
         }
 
         [HttpPost]
@@ -62,14 +62,15 @@ namespace CLC.Controllers
             return PartialView("_Board", GameLogic.Grid);
         }
 
-        [HttpGet]
+        [HttpPost]
         public void Save(string time)
         {
             // update time
             GameLogic.Grid.Time = int.Parse(time);
 
             // save game
-            SaveGameState();
+            if (!GameLogic.Grid.Lose)
+                SaveGameState();
         }
 
         private void SaveGameState()
@@ -81,7 +82,6 @@ namespace CLC.Controllers
             }
             else
             {
-
                 // save JSON in DB
                 var service = new GameStateService();
 

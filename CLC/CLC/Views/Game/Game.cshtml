@@ -12,7 +12,6 @@
     var ajaxSave = new AjaxOptions
     {
         HttpMethod = "POST",
-        InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "save-time",
         OnSuccess = "saveSuccess"
     };
@@ -119,6 +118,12 @@
                     // var script = "$('#boardForm').trigger('submit');";
                     hasStarted = false;
 
+                    @if (Model.Time > 0)
+                    {
+                        @: $("#seconds").text(@Model.Time % 60 > 9 ? @Model.Time % 60 : "0" + @Model.Time % 60);
+                        @: $("#minutes").text(parseInt(parseInt(@Model.Time) / 60) + ":");
+                    }
+
                     startTimer = function() {
 
                         // html elements to update
@@ -126,6 +131,7 @@
                         var sTarget = $("#seconds");
                         mTarget.text("0:");
                         sTarget.text("00");
+                        hasStarted = true;
 
                         // display time
                         var tv = $("#time-var");
@@ -133,16 +139,20 @@
                         // time for saving on "save game" button click
                         var sTv = $("#save-time");
 
-                        // start timer 
-                        var time = @if (Model.Time > 0){
-                                       @: @Model.Time;
-                                   }
-                                   else
-                                   {
-                                       @: 0
-                                   }
-                            ;
-                        setInterval(function() {
+                        var time;
+                        @if (Model.Time > 0)
+                                {
+                                    @: time = @Model.Time;
+                                }
+                                else
+                                {
+                                    @: time = 0;
+                                }
+                        var intrvl = setInterval(function() {
+                                if ($("#status").text().length > 1) {
+                                    clearInterval(intrvl);
+                                    $("#current-time").css("color", "#aaa");
+                                }
                                 time++;
                                 tv.attr("value", time);
                                 sTv.attr("value", time);
@@ -153,7 +163,8 @@
                     }
 
                     ajaxSuccess = function() {
-                        if ($("#current-time").text() == "Time ")
+//                        if ($("#current-time").text() == "Time ")
+                        if(!hasStarted)
                             startTimer();
                     }
 

@@ -17,12 +17,15 @@
                 <br/>
                 <br/>
             }
-            @foreach (var e in Model)
+            @if (Model != null)
             {
-                using (Html.BeginForm("LoadGame", "Game"))
-                {
-                    <button type="submit" name="id" value="@e.Id">Time: @e.Time Moves: @e.Moves</button>
-                }
+                foreach (var e in Model)
+                 {
+                     using (Html.BeginForm("LoadGame", "Game"))
+                     {
+                         <button type="submit" name="id" value="@e.Id">Time: @e.Time Moves: @e.Moves Size: (@e.Height, @e.Width)</button>
+                     }
+                 }
             }
         </div>
     </div>

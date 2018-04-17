@@ -27,7 +27,7 @@ namespace MinesweeperStatsService
 
             // ship it
             var dto = new DTO(errorCode, statusMessage, data);
-            return dto;`
+            return dto;
         }
     }
 }

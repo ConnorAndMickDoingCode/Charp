@@ -21,7 +21,7 @@ namespace CLC.Services.Data
                                           "ApplicationIntent=ReadWrite;" +
                                           "MultiSubnetFailover=False";
 
-        public int Create(User user, string json)
+        public void Create(User user, string json)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace CLC.Services.Data
                     cn.Close();
                 }
 
-                // Setup SELECT query with parameters
+                /*// Setup SELECT query with parameters
                 query = "SELECT ID FROM dbo.Games WHERE STATE = @State";
 
                 // Create connection and command
@@ -59,7 +59,7 @@ namespace CLC.Services.Data
                     var result = reader.GetInt32(0);
                     cn.Close();
                     return result;
-                }
+                }*/
             }
             catch (SqlException e)
             {
