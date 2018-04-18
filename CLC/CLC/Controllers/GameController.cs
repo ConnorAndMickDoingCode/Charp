@@ -13,6 +13,7 @@ namespace CLC.Controllers
 
         // GET: Game
         [HttpGet]
+        [SecurityFilter]
         public ActionResult Index()
         {
             var user = (Session["user"] is User u) ? u : null;
@@ -27,6 +28,7 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
+        [SecurityFilter]
         public ActionResult Select(String size)
         {
             if (size.Equals("large"))
@@ -40,6 +42,7 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
+        [SecurityFilter]
         public PartialViewResult Play(String time, String cell)
         {
             // run cell check logic
@@ -63,6 +66,7 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
+        [SecurityFilter]
         public void Save(string time)
         {
             // update time
@@ -96,6 +100,7 @@ namespace CLC.Controllers
         }
 
         [HttpPost]
+        [SecurityFilter]
         public ActionResult LoadGame(int id)
         {
             // get game by id
