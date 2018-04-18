@@ -15,7 +15,7 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            User user = (Session["user"] is User) ? (User) Session["user"] : null;
+            var user = (Session["user"] is User u) ? u : null;
             if (user != null)
             {
                 var service = new GameStateService();
@@ -78,7 +78,7 @@ namespace CLC.Controllers
             // make sure user is logged in
             if (Session["user"] == null)
             {
-                // TODO 
+                // 
             }
             else
             {

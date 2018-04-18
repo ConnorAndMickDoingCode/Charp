@@ -181,6 +181,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SecurityFilter.cs" />
     <Compile Include="Controllers\TeamMembersController.cs" />
     <Compile Include="Exceptions\MSDataException.cs" />
     <Compile Include="Global.asax.cs">
