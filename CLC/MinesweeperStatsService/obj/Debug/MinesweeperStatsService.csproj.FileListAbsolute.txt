@@ -24,3 +24,8 @@ C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\obj\Deb
 C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\obj\Debug\MinesweeperStatsService.pdb
 C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\NLog.dll
 C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\NLog.xml
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\WebActivatorEx.dll
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\Unity.Abstractions.dll
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\Unity.Container.dll
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\Unity.Mvc.dll
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\Unity.Abstractions.pdb

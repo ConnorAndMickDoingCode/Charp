@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-using System;
-
-using Unity;
-=======
 using CLC.Services.Utility;
 using System;
 
 using Unity;
 using Unity.Lifetime;
->>>>>>> master
 
 namespace CLC
 {
@@ -50,11 +44,8 @@ namespace CLC
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-<<<<<<< HEAD
-=======
 
             container.RegisterType<ILogger, TheLogger>(new ContainerControlledLifetimeManager());
->>>>>>> master
         }
     }
 }

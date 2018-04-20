@@ -5,21 +5,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CLC.Services.Utility;
 
 namespace CLC.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly ILogger _logger;
+
+        public LoginController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         // GET: Login
         [HttpGet]
         public ActionResult Index()
         {
+            _logger.Info("LoginController::Index");
             return View("../Default/Index");
         }
 
         [HttpPost]
         public ActionResult Login(User user)
         {
+            _logger.Info("LoginController::Login");
             if (!ModelState.IsValid)
                 return View("../Default/Index");
 
@@ -36,6 +46,7 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
+            _logger.Info("LoginController::Logout");
             Session.RemoveAll();
             return View("../Default/Index");
         }
