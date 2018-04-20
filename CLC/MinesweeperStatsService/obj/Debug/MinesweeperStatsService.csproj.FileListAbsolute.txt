@@ -22,3 +22,5 @@ C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\obj\Deb
 C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\obj\Debug\MinesweeperStatsService.csproj.CopyComplete
 C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\obj\Debug\MinesweeperStatsService.dll
 C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\obj\Debug\MinesweeperStatsService.pdb
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\NLog.dll
+C:\Users\speed\Documents\_repositories\Charp\CLC\MinesweeperStatsService\bin\NLog.xml
