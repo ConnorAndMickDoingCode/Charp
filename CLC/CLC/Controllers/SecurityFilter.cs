@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace CLC.Controllers
 {
-    public class SecurityFilter : IAuthorizationFilter
+    public class SecurityFilter : FilterAttribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            if ()
-            filterContext.Result = new RedirectResult("/Login");
+            if (filterContext.HttpContext.Session["User"] == null)
+                filterContext.Result = new RedirectResult("/Login");
         }
     }
 }
