@@ -29,26 +29,42 @@ namespace CLC.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            _logger.Info("LoginController::Login");
-            if (!ModelState.IsValid)
-                return View("../Default/Index");
+            try
+            {
+                _logger.Info("LoginController::Login", user.ToString());
+                if (!ModelState.IsValid)
+                    return View("../Default/Index");
 
-            SecurityService service = new SecurityService();
+                SecurityService service = new SecurityService();
 
-            bool results = service.Authenticate(user);
+                bool results = service.Authenticate(user);
 
-            if (!results)
-                return View("LoginFailed");
-            Session["user"] = user;
-            return View("UserHomePage");
+                if (!results)
+                    return View("LoginFailed");
+                Session["user"] = user;
+                return View("UserHomePage");
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Error in Login: " + e);
+                throw;
+            }
         }
 
         [HttpGet]
         public ActionResult Logout()
         {
-            _logger.Info("LoginController::Logout");
-            Session.RemoveAll();
-            return View("../Default/Index");
+            try
+            {
+                _logger.Info("LoginController::Logout");
+                Session.RemoveAll();
+                return View("../Default/Index");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

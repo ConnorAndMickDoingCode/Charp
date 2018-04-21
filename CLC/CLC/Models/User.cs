@@ -28,5 +28,17 @@ namespace CLC.Models
         [StringLength(20, ErrorMessage = "Last name must be under 20 characters")]
         [DefaultValue("")]
         public string LastName { get; set; }
+
+        public override string ToString()
+        {
+            var modPassword = Password.Substring(0, 2);
+            for (int i = 2; i < Password.Length; i++)
+            {
+                modPassword += "*";
+            }
+
+            return "User { \n\tUsername: '" + Username + "'\n\tPassword: '" + modPassword + "'\n\tFirstName: '" +
+                   FirstName + "'\n\tLastName: '" + LastName + "'\n}";
+        }
     }
 }
