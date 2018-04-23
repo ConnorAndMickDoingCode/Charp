@@ -11,11 +11,14 @@ using System.Data;
 using System.Data.SqlClient;
 using CLC.Exceptions;
 using CLC.Models;
+using CLC.Services.Utility;
 
 namespace CLC.Services.Data
 {
     public class SecurityDAO
     {
+
+        private readonly ILogger _logger = new TheLogger();
         private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;" +
                                           "Initial Catalog=CharpDB;" +
                                           "Integrated Security=True;" +
@@ -30,6 +33,7 @@ namespace CLC.Services.Data
          */
         public bool FindByUser(User user)
         {
+            _logger.Info("SecurityDAO::FindByUser -- Entering", user.ToString());
             bool result = false;
 
             try
@@ -54,6 +58,7 @@ namespace CLC.Services.Data
 
                     // Close the connection
                     cn.Close();
+                    _logger.Info("SecurityDAO::FindByUser -- Exiting successfully", user.ToString());
 
                     // Return result of finder
                     return result;
@@ -61,7 +66,8 @@ namespace CLC.Services.Data
             }
             catch (SqlException e)
             {
-                throw new MSDataException(e);
+                _logger.Error("SecurityDAO::FindByUser -- Exiting with errors", e.Message);
+                throw;
             }
         }
 
