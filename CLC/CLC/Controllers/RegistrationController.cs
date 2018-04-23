@@ -19,7 +19,11 @@ namespace CLC.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
+            if(!ModelState.IsValid)
+                return View("../Default/Index");
+
             SecurityService service = new SecurityService();
+
 
             // Check for existing username (no duplicates)
             if (service.UsernameExists(user))

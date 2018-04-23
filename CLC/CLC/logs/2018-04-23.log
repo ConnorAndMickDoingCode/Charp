@@ -16,3 +16,39 @@
 2018-04-23 14:48:06.1474 INFO SecurityService::InvalidParams -- Exiting
 2018-04-23 14:48:06.1474 INFO SecurityDAO::FindByUser -- Entering
 2018-04-23 14:48:06.1589 INFO SecurityDAO::FindByUser -- Exiting successfully
+2018-04-23 14:52:04.4966 ERROR Error in Login: System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLC.Models.User.ToString() in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Models\User.cs:line 34
+   at CLC.Controllers.LoginController.Login(User user) in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Controllers\LoginController.cs:line 34
+2018-04-23 14:52:14.4718 ERROR Error in Login: System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLC.Models.User.ToString() in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Models\User.cs:line 34
+   at CLC.Controllers.LoginController.Login(User user) in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Controllers\LoginController.cs:line 34
+2018-04-23 14:54:53.9902 ERROR Error in Login: System.ArgumentOutOfRangeException: Index and length must refer to a location within the string.
+Parameter name: length
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at CLC.Models.User.ToString() in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Models\User.cs:line 34
+   at CLC.Controllers.LoginController.Login(User user) in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Controllers\LoginController.cs:line 34
+2018-04-23 14:55:00.6825 INFO LoginController::Login
+2018-04-23 14:55:00.6825 INFO SecurityService::Authenticate -- Entering
+2018-04-23 14:55:00.6825 INFO SecurityService::Authenticate -- Exiting
+2018-04-23 14:55:00.6825 INFO SecurityService::InvalidParams -- Entering
+2018-04-23 14:55:00.6885 INFO SecurityService::InvalidParams -- Exiting
+2018-04-23 14:55:00.6885 INFO SecurityDAO::FindByUser -- Entering
+2018-04-23 14:55:00.6885 INFO SecurityDAO::FindByUser -- Exiting successfully
+2018-04-23 14:55:28.8204 INFO SecurityService::UsernameExists -- Entering
+2018-04-23 14:55:28.8204 INFO SecurityService::UsernameExist -- Exiting
+2018-04-23 14:55:28.8204 INFO SecurityService::InvalidParams -- Entering
+2018-04-23 14:55:28.8204 INFO SecurityService::InvalidParams -- Exiting
+2018-04-23 14:55:44.9237 INFO LoginController::Logout
+2018-04-23 14:57:19.1105 ERROR Error in Login: System.ArgumentOutOfRangeException: Index and length must refer to a location within the string.
+Parameter name: length
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at CLC.Models.User.ToString() in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Models\User.cs:line 34
+   at CLC.Controllers.LoginController.Login(User user) in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Controllers\LoginController.cs:line 34
+2018-04-23 14:59:51.4465 INFO LoginController::Login
+2018-04-23 15:00:52.7428 INFO LoginController::Login
+2018-04-23 15:00:52.7428 INFO SecurityService::Authenticate -- Entering
+2018-04-23 15:00:52.7428 INFO SecurityService::Authenticate -- Exiting
+2018-04-23 15:00:52.7428 INFO SecurityService::InvalidParams -- Entering
+2018-04-23 15:00:52.7428 INFO SecurityService::InvalidParams -- Exiting
+2018-04-23 15:00:52.7518 INFO SecurityDAO::FindByUser -- Entering
+2018-04-23 15:00:52.8742 INFO SecurityDAO::FindByUser -- Exiting successfully

@@ -31,7 +31,7 @@ namespace CLC.Controllers
         {
             try
             {
-                _logger.Info("LoginController::Login", user.ToString());
+                _logger.Info("LoginController::Login");
                 if (!ModelState.IsValid)
                     return View("../Default/Index");
 

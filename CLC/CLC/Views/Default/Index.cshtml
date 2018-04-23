@@ -15,7 +15,7 @@
         <h1>welcome to minesweeper</h1>
         <p>this minesweeper is built upon the ASP.NET framework. click the button below to get started!</p>
     </div>
-    <div style="width:600px;margin:auto;">
+    <div style="width: 600px; margin: auto;">
         @ViewBag.SuccessMessage
 
 
@@ -41,17 +41,20 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Username, new {@class = "control-label col-md-3"})
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Username, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.EditorFor(model => model.Username,
+                                    new {htmlAttributes = new {@class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Username, "", new {@class = "text-danger"})
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.Password, new {@class = "control-label col-md-3"})
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@type = "password", @class = "form-control"}})
+                                @Html.EditorFor(model => model.Password, 
+                                    new {htmlAttributes = new {type = "password", required = "required", @class = "form-control"}})
                                 @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
                             </div>
-                        </div><br/>
+                        </div>
+                        <br/>
                         <input class="btn btn-primary btn-block" type="submit" value="Login">
                     }
                 </div>
@@ -67,33 +70,38 @@
                         </div>
                         @Html.ValidationSummary(true, "u lie, u die (you can always retry)", new {@class = "text-danger"})
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Username, htmlAttributes: new {@class = "control-label col-md-3"})
+                            @Html.LabelFor(model => model.Username, new {@class = "control-label col-md-3"})
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Username, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.EditorFor(model => model.Username,
+                                    new {htmlAttributes = new {@class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Username, "", new {@class = "text-danger"})
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.Password, htmlAttributes: new {@class = "control-label col-md-3"})
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@type = "password", @class = "form-control"}})
+                                @Html.EditorFor(model => model.Password, 
+                                    new {htmlAttributes = new {@type = "password", required = "required", @class = "form-control"}})
                                 @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new {@class = "control-label col-md-3"})
+                            @Html.LabelFor(model => model.FirstName, new {@class = "control-label col-md-3"})
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new { @class = "form-control"}})
+                                @Html.EditorFor(model => model.FirstName,
+                                    new {htmlAttributes = new {@class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.LastName, htmlAttributes: new {@class = "control-label col-md-3"})
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control"}})
+                                @Html.EditorFor(model => model.LastName, 
+                                    new {htmlAttributes = new {@class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
                             </div>
-                        </div><br />
+                        </div>
+                        <br/>
                         <input class="btn btn-primary btn-block" type="submit" value="Create">
                     }
                 </div>
