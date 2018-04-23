@@ -1,0 +1,18 @@
+2018-04-23 14:41:19.6854 INFO LoginController::Login
+2018-04-23 14:41:19.7516 INFO SecurityService::Authenticate -- Entering
+2018-04-23 14:41:19.7516 INFO SecurityService::Authenticate -- Exiting
+2018-04-23 14:41:19.7516 INFO SecurityService::InvalidParams -- Entering
+2018-04-23 14:41:19.7516 INFO SecurityService::InvalidParams -- Exiting
+2018-04-23 14:41:19.7706 INFO SecurityDAO::FindByUser -- Entering
+2018-04-23 14:41:21.6165 INFO SecurityDAO::FindByUser -- Exiting successfully
+2018-04-23 14:47:36.9606 INFO LoginController::Logout
+2018-04-23 14:47:49.0221 ERROR Error in Login: System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLC.Models.User.ToString() in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Models\User.cs:line 34
+   at CLC.Controllers.LoginController.Login(User user) in C:\Users\speed\Documents\_repositories\Charp\CLC\CLC\Controllers\LoginController.cs:line 34
+2018-04-23 14:48:06.1474 INFO LoginController::Login
+2018-04-23 14:48:06.1474 INFO SecurityService::Authenticate -- Entering
+2018-04-23 14:48:06.1474 INFO SecurityService::Authenticate -- Exiting
+2018-04-23 14:48:06.1474 INFO SecurityService::InvalidParams -- Entering
+2018-04-23 14:48:06.1474 INFO SecurityService::InvalidParams -- Exiting
+2018-04-23 14:48:06.1474 INFO SecurityDAO::FindByUser -- Entering
+2018-04-23 14:48:06.1589 INFO SecurityDAO::FindByUser -- Exiting successfully

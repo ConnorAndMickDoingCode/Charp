@@ -105,7 +105,13 @@
 </style>
 <div class="container">
     <div class="row" style="margin: 0 auto 50px; width: 100px; text-align: center">
-        <a href="~/Game">New Game</a>
+        <div class="row" align="center">
+            @using (Ajax.BeginForm("Save", "Game", ajaxSave, new {id = "boardForm", @class = "col-md-10"}))
+            {
+                <input id="save-time" value="0" name="time" hidden/>
+                <input type="submit" value="Save Game" class="btn btn-default"/>
+            }
+        </div>
 
     </div>
     <div class="row" style="margin: 0 auto; text-align: left">
@@ -184,11 +190,4 @@
         }
     </div>
 
-    <div class="row" align="center">
-        @using (Ajax.BeginForm("Save", "Game", ajaxSave, new {id = "boardForm", @class = "col-md-10"}))
-        {
-            <input id="save-time" value="0" name="time" hidden/>
-            <input type="submit" value="Save Game"/>
-        }
-    </div>
 </div>

@@ -10,9 +10,9 @@
             <h3>Select game size:</h3>
             @using (Html.BeginForm("Select", "Game"))
             {
-                <button type="submit" name="size" value="small" class="">Small</button>
-                <button type="submit" name="size" value="medium" class="">Medium</button>
-                <button type="submit" name="size" value="large" class="">Large</button>
+                <button type="submit" name="size" value="small" class="btn btn-default">Small</button>
+                <button type="submit" name="size" value="medium" class="btn btn-default">Medium</button>
+                <button type="submit" name="size" value="large" class="btn btn-default">Large</button>
 
                 <br/>
                 <br/>
@@ -23,7 +23,7 @@
                  {
                      using (Html.BeginForm("LoadGame", "Game"))
                      {
-                         <button type="submit" name="id" value="@e.Id">Time: @e.Time Moves: @e.Moves Size: (@e.Height, @e.Width)</button>
+                         <button type="submit" name="id" value="@e.Id" class="btn btn-primary" style="width:250px">Time: @e.Time Moves: @e.Moves Size: (@e.Height, @e.Width)</button>
                      }
                  }
             }

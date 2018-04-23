@@ -12,6 +12,12 @@
                     <li role="presentation">
                         <a href="/TeamMembers">Team Members</a>
                     </li>
+                    @if (Session["user"] != null)
+                    {
+                        <li role="presentation">
+                            <a href="~/Game" >New Game</a>
+                        </li>
+                    }
                 </ul>
                 <p class="navbar-text navbar-right actions" style="background-color: #ffffff;">
                     <a class="btn btn-default action-button" role="button" href="~/Login/Logout" style="background-color: #b7ffc3;">Logout </a>
