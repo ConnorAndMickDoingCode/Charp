@@ -9,5 +9,10 @@ namespace CLC.Controllers
         {
             return View("Index");
         }
+        
+        public ActionResult Home()
+        {
+            return View("Index");
+        }
     }
 }

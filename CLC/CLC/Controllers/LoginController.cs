@@ -66,5 +66,16 @@ namespace CLC.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public ActionResult Home()
+        {
+            var user = (Session["user"] is User u) ? u : null;
+            if (user != null)
+            {
+                return View("UserHomePage");
+            }
+            return View("../Default/Index");
+        }
     }
 }
