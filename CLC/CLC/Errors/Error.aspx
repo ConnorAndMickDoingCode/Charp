@@ -16,7 +16,7 @@
         <li>what issue?</li>
         <li>quit programming and take up basket weaving or another, more forgiving occupation</li>
     </ul>
-
+    <a href="/">Go home Minesweeper: you are drunk</a>
 </div>
 </body>
 </html>
