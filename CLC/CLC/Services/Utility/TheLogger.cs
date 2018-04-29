@@ -9,7 +9,6 @@ namespace CLC.Services.Utility
     public class TheLogger : ILogger
     {
 
-        private TheLogger logger;
         public Logger Logger;
 
         public Logger GetLogger()
