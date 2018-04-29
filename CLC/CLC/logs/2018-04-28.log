@@ -1,0 +1,14 @@
+2018-04-28 18:40:27.8943 INFO LoginController::Login
+2018-04-28 18:40:27.9404 INFO SecurityService::Authenticate -- Entering
+2018-04-28 18:40:27.9404 INFO SecurityService::Authenticate -- Exiting
+2018-04-28 18:40:27.9404 INFO SecurityService::InvalidParams -- Entering
+2018-04-28 18:40:27.9404 INFO SecurityService::InvalidParams -- Exiting
+2018-04-28 18:40:27.9404 INFO SecurityDAO::FindByUser -- Entering
+2018-04-28 18:40:32.2521 INFO SecurityDAO::FindByUser -- Exiting successfully
+2018-04-28 18:42:07.2395 INFO LoginController::Login
+2018-04-28 18:42:07.2796 INFO SecurityService::Authenticate -- Entering
+2018-04-28 18:42:07.2836 INFO SecurityService::Authenticate -- Exiting
+2018-04-28 18:42:07.2836 INFO SecurityService::InvalidParams -- Entering
+2018-04-28 18:42:07.2836 INFO SecurityService::InvalidParams -- Exiting
+2018-04-28 18:42:07.3067 INFO SecurityDAO::FindByUser -- Entering
+2018-04-28 18:42:07.3367 INFO SecurityDAO::FindByUser -- Exiting successfully
